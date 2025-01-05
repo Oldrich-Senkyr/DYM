@@ -1,12 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from .models import Product, Entity, Order
 
 
 # Create your models here.
 class Order(models.Model):
     name = models.CharField(max_length=70, verbose_name=_("Product name"))
-    customer = models.ForeignKey('Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
+    customer = models.ForeignKey('core.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
     order_date = models.DateField(verbose_name=_("Order date"))
     required_date = models.DateField(verbose_name=_("Required delivery date"))
     shipped_date = models.DateField(verbose_name=_("Shipped date"))
@@ -26,7 +25,7 @@ class Order(models.Model):
 
 class OrderProduct(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name=_("Order"))
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name=_("Product"))
+    product = models.ForeignKey('products.Product', on_delete=models.CASCADE, verbose_name=_("Product"))
     qty = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Quantity"))
     price_each = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Price each"))
     created_at = models.DateTimeField(verbose_name=_("Created at"))
@@ -34,7 +33,7 @@ class OrderProduct(models.Model):
 
 class Invoice(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name=_("Order"))
-    customer = models.ForeignKey('Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
+    customer = models.ForeignKey('core.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
     issue_date = models.DateField(verbose_name=_("Invoice issue date"))
     due_date = models.DateField(verbose_name=_("Invoice due date"))
     payment_date = models.DateField(verbose_name=_("Payment date"))

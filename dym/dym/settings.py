@@ -24,8 +24,14 @@ SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['10.20.30.70','10.20.30.71', 'localhost', '127.0.0.1']
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL  = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 # Application definition
@@ -37,7 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dym',
+    'core',
+    'orders',
+    'products',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Důležité pro i18n
 ]
 
 ROOT_URLCONF = 'dym.urls'
@@ -75,8 +88,16 @@ WSGI_APPLICATION = 'dym.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dym',
+        'USER': 'dym_admin',
+        'PASSWORD': 'dymadmin',
+        'HOST': 'localhost',  # IP address of your PostgreSQL server
+        'PORT': '5433',  # Default PostgreSQL port
+        #    'OPTIONS': {
+     #       'charset': 'utf8mb4',
+    #    }        
+ 
     }
 }
 
