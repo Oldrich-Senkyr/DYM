@@ -103,13 +103,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
+from django.utils.translation import gettext_lazy as _
+LANGUAGES = [
+    ('en', _('English')),
+    ('cs', _('Čeština')),
+]
+
+USE_L10N = True
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+# Nastavení cookies pro jazyk
+TIME_ZONE = 'Europe/Prague'
 USE_I18N = True
-
 USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 # Static files (CSS, JavaScript, Images)
