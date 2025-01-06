@@ -1,7 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from .models import Entity, Address, ContactPerson, BankAccount
 
 @admin.register(Entity)
@@ -14,16 +12,8 @@ class EntityAdmin(admin.ModelAdmin):
         'created_at', 
         'updated_at'
     )
-    list_filter = (
-        'entity_type', 
-        'legal_entity_type'
-    )
-    search_fields = (
-        'display_name', 
-        'company_name', 
-        'company_id', 
-        'company_vat'
-    )
+    list_filter = ('entity_type', 'legal_entity_type')
+    search_fields = ('display_name', 'company_name', 'company_id', 'company_vat')
     ordering = ('-created_at',)
 
 @admin.register(Address)
@@ -40,13 +30,13 @@ class AddressAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'address_type', 
-        'country'
-    )
+        'country')
+    
     search_fields = (
         'street', 
         'city', 
-        'postal_code', 
-        'country'
+        'Postal Code', 
+        'Country'
     )
     ordering = ('-created_at',)
 
@@ -89,7 +79,7 @@ class BankAccountAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'is_primary', 
-        'currency'
+        'currency',
     )
     search_fields = (
         'account_name', 

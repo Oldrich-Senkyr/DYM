@@ -1,0 +1,257 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-05 21:48+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: .\core\models.py:5
+msgid "Display name"
+msgstr "Zobrazit jako"
+
+#: .\core\models.py:6
+msgid "Company name"
+msgstr "Název společnosti"
+
+#: .\core\models.py:7
+msgid "Company ID"
+msgstr "IČO společnosti"
+
+#: .\core\models.py:8
+msgid "Company VAT"
+msgstr "DIČ společnosti"
+
+#: .\core\models.py:9
+msgid "Birth number"
+msgstr "Rodné číslo"
+
+#: .\core\models.py:11
+msgid "Business"
+msgstr "Obchodní společnost"
+
+#: .\core\models.py:12
+msgid "Non-profit"
+msgstr "Nezisková organizace"
+
+#: .\core\models.py:13
+msgid "Contributory organization"
+msgstr "Příspěvková organizace"
+
+#: .\core\models.py:15
+msgid "Entity type"
+msgstr "Typ subjektu"
+
+#: .\core\models.py:17
+msgid "Natural person"
+msgstr "Fyzická osoba"
+
+#: .\core\models.py:18
+msgid "Legal entity"
+msgstr "Právnická osoba"
+
+#: .\core\models.py:20
+msgid "Legal entity type"
+msgstr "Typ právnické osoby"
+
+#: .\core\models.py:21 .\core\models.py:39 .\core\models.py:50
+#: .\core\models.py:62
+msgid "Created at"
+msgstr "Založeno"
+
+#: .\core\models.py:22 .\core\models.py:40 .\core\models.py:51
+#: .\core\models.py:63
+msgid "Updated at"
+msgstr "Aktualizováno"
+
+#: .\core\models.py:25 .\core\models.py:29 .\core\models.py:43
+#: .\core\models.py:54
+msgid "Entity"
+msgstr "Entita"
+
+#: .\core\models.py:26
+msgid "Entities"
+msgstr "Entity"
+
+#: .\core\models.py:30
+msgid "Street"
+msgstr "Ulice"
+
+#: .\core\models.py:31
+msgid "City"
+msgstr "Město"
+
+#: .\core\models.py:32
+msgid "Postal code"
+msgstr "PSČ"
+
+#: .\core\models.py:33
+msgid "Country"
+msgstr "Země"
+
+#: .\core\models.py:35
+msgid "Billing"
+msgstr "Fakturace"
+
+#: .\core\models.py:36
+msgid "Shipping"
+msgstr "Doprava"
+
+#: .\core\models.py:37
+msgid "Other"
+msgstr "Další"
+
+#: .\core\models.py:38
+msgid "Address type"
+msgstr "Typ adresy"
+
+#: .\core\models.py:44
+msgid "First name"
+msgstr "Jméno"
+
+#: .\core\models.py:45
+msgid "Last name"
+msgstr "Příjmení"
+
+#: .\core\models.py:46
+msgid "Email address"
+msgstr "E-mailová adresa"
+
+#: .\core\models.py:47
+msgid "Phone number"
+msgstr "Telefonní číslo"
+
+#: .\core\models.py:48
+msgid "Position"
+msgstr "Pozice"
+
+#: .\core\models.py:49
+msgid "Primary contact"
+msgstr "Primární kontakt"
+
+#: .\core\models.py:55
+msgid "Account name"
+msgstr "Název účtu"
+
+#: .\core\models.py:56
+msgid "Bank account number"
+msgstr "Číslo bankovního účtu"
+
+#: .\core\models.py:57
+msgid "IBAN"
+msgstr ""
+
+#: .\core\models.py:58
+msgid "SWIFT code"
+msgstr "SWIFT kód"
+
+#: .\core\models.py:59
+msgid "Bank name"
+msgstr "Název banky"
+
+#: .\core\models.py:60
+msgid "Account currency"
+msgstr "Měna účtu"
+
+#: .\core\models.py:61
+msgid "Primary account"
+msgstr "Primární účet"
+
+#: .\core\templates\core\base.html:15 .\core\templates\core\base.html:23
+msgid "My Site"
+msgstr "Dymokury"
+
+#: .\core\templates\core\base.html:25
+msgid "Home"
+msgstr "Úvodní stránka"
+
+#: .\core\templates\core\base.html:28
+msgid "Attendance"
+msgstr "Docházka"
+
+#: .\core\templates\core\base.html:29
+msgid "Work Days"
+msgstr "Pracovní dny"
+
+#: .\core\templates\core\base.html:30
+msgid "Projects"
+msgstr "Projekty"
+
+#: .\core\templates\core\base.html:34
+msgid "Administration"
+msgstr "Správa"
+
+#: .\core\templates\core\base.html:36
+msgid "All Events"
+msgstr "Všechny akce"
+
+#: .\core\templates\core\base.html:38
+msgid "Filtered Events"
+msgstr "Filtrované události"
+
+#: .\core\templates\core\base.html:40
+msgid "Upcoming Events"
+msgstr "Nadcházející akce"
+
+#: .\core\templates\core\base.html:45
+msgid "Reports"
+msgstr "Výpisy"
+
+#: .\core\templates\core\base.html:47
+msgid "Hierarchy"
+msgstr "Hierarchie"
+
+#: .\core\templates\core\base.html:49
+msgid "Persons"
+msgstr "Osoby"
+
+#: .\core\templates\core\base.html:51
+msgid "Persons&Companies"
+msgstr "Osoby a společnosti"
+
+#: .\core\templates\core\base.html:54
+msgid "Logout"
+msgstr "Odhlášení"
+
+#: .\core\templates\core\base.html:56 .\core\templates\core\login.html:3
+#: .\core\templates\core\login.html:8
+msgid "Log in"
+msgstr "Přilášení"
+
+#: .\core\templates\core\base.html:57 .\core\templates\core\signup.html:3
+#: .\core\templates\core\signup.html:8
+msgid "Sign up"
+msgstr "Registrace"
+
+#: .\core\templates\core\login.html:14 .\core\templates\core\signup.html:14
+msgid "Username:"
+msgstr "Uživatelské jméno"
+
+#: .\core\templates\core\login.html:19 .\core\templates\core\signup.html:24
+msgid "Password:"
+msgstr "Heslo"
+
+#: .\core\templates\core\login.html:33 .\core\templates\core\signup.html:43
+msgid "Submit"
+msgstr "Odeslat"
+
+#: .\core\templates\core\signup.html:19
+msgid "Email:"
+msgstr "E-mail:"
+
+#: .\core\templates\core\signup.html:29
+msgid "Repeat password:"
+msgstr "Opakujte heslo"

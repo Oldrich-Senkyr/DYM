@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-05 18:47+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+#: .\products\admin.py:24 .\products\models.py:28
+msgid "Product"
+msgstr "Produkt"
+
+#: .\products\admin.py:25
+msgid "Products"
+msgstr "Produkty"
+
+#: .\products\admin.py:43
+msgid "Packaging"
+msgstr "Balení"
+
+#: .\products\admin.py:44
+msgid "Packagings"
+msgstr "Balení"
+
+#: .\products\models.py:7
+msgid "Product name"
+msgstr "Název produktu"
+
+#: .\products\models.py:8
+msgid "Vendor"
+msgstr "Prodejce"
+
+#: .\products\models.py:9
+msgid "Product description"
+msgstr "Popis produktu"
+
+#: .\products\models.py:10
+msgid "Product description HTML file"
+msgstr "Soubor HTML s popisem výrobku"
+
+#: .\products\models.py:11
+msgid "In stock"
+msgstr "Skladem"
+
+#: .\products\models.py:12
+msgid "In stock reserved"
+msgstr "Skladem rezervováno"
+
+#: .\products\models.py:13
+msgid "Ordered"
+msgstr "Objednáno"
+
+#: .\products\models.py:14
+msgid "Buy price"
+msgstr "Kupní cena"
+
+#: .\products\models.py:15 .\products\models.py:26
+msgid "Created at"
+msgstr "Vytvořeno"
+
+#: .\products\models.py:16 .\products\models.py:27
+msgid "Updated at"
+msgstr "Aktualizováno"
+
+#: .\products\models.py:20
+msgid "Length in cm"
+msgstr "Délka v cm"
+
+#: .\products\models.py:21
+msgid "Width in cm"
+msgstr "Šířka v cm"
+
+#: .\products\models.py:22
+msgid "Height in cm"
+msgstr "Výška v cm"
+
+#: .\products\models.py:23
+msgid "Volume in litres"
+msgstr "Objem v litrech"
+
+#: .\products\models.py:24
+msgid "Net weight in kg"
+msgstr "Netto hmotnost v kg"
+
+#: .\products\models.py:25
+msgid "Gross weight in kg"
+msgstr "Brutto hmotnost v kg“"

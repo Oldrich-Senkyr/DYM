@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 LANGUAGES = [
     ('en', _('English')),
-    ('cs', _('Čeština')),
+    ('cs', _('Czech')),
 ]
 
 USE_L10N = True
@@ -149,6 +149,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
