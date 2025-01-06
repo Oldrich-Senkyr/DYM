@@ -1,0 +1,39 @@
+Table Person {
+  id int [pk, increment]
+  unique_id varchar(20) [unique, not null, note: "Enter a unique identifier."]
+  display_name varchar(25) [note: "Alias", default: "Alias"]
+  first_name varchar(25) [not null, note: "First Name", default: "Nomen"]
+  last_name varchar(25) [not null, note: "Last Name", default: "Omen"]
+  role int [not null, default: 6, note: "Role"]
+  title_before varchar(10) [note: "Title Before"]
+  title_after varchar(10) [note: "Title After"]
+}
+
+Enum TitleBefore {
+  "Bc."
+  "BcA."
+  "RNDr."
+  "MUDr."
+  "JUDr."
+  "PhDr."
+  "Ing."
+  "Mgr."
+}
+
+Enum TitleAfter {
+  "DiS."
+  "MBA"
+  "LL.M."
+  "CSc."
+  "DrSc."
+  "Ph.D."
+}
+
+Enum Role {
+ "Employee"
+ "Guest"
+ "Contractor"
+ "Supplier"
+ "Customer"
+ "Other"
+}

@@ -27,5 +27,6 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
+    path('agent/', include('agent.urls')),
     # Add other language-specific URLs here as needed
 )

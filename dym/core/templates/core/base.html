@@ -51,17 +51,16 @@
                             <a href="" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Persons&Companies" %}</a>
                         </div>
                     </div>
-                    <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Logout" %}</a>
+                    <a href="{% url 'agent:logout' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Logout" %}</a>
                 {% else %}
-                    <a href="#" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">{% trans "Log in" %}</a>
-                    <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Sign up" %}</a>
+                    <a href="{% url 'agent:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">{% trans "Log in" %}</a>
+                    <a href="{% url 'agent:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Sign up" %}</a>
                 {% endif %}
 
                 <!-- Language Switcher -->
                 <div class="flex flex-col items-center ml-4">
                     <a href="{% url 'core:switch_language' 'cs' %}" class="mb-1"><img src="{% static 'flags/cs.png' %}" alt="Čeština" class="w-8 h-auto"></a>
                     <a href="{% url 'core:switch_language' 'en' %}" class="mb-1"><img src="{% static 'flags/en.png' %}" alt="English" class="w-8 h-auto"></a>
-                    <a href="{% url 'core:switch_language' 'de' %}"><img src="{% static 'flags/de.png' %}" alt="Deutsch" class="w-8 h-auto"></a>
                 </div>
             </div>
         </div>
