@@ -20,7 +20,7 @@ msgstr ""
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 #: .\orders\admin.py:26 .\orders\models.py:27 .\orders\models.py:35
 msgid "Order"
-msgstr ""
+msgstr "Objednávka"
 
 #: .\orders\admin.py:27
 msgid "Orders"
