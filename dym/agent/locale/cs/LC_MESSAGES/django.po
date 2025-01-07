@@ -260,7 +260,7 @@ msgstr "Zaregistrujte se"
 
 #: .\agent\templates\agent\signup.html:19
 msgid "Email:"
-msgstr E-mail:"
+msgstr "E-mail:"
 
 #: .\agent\templates\agent\signup.html:29
 msgid "Repeat password:"
