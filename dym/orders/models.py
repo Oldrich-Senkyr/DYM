@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Order(models.Model):
     name = models.CharField(max_length=70, verbose_name=_("Product name"))
-    customer = models.ForeignKey('core.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
+    customer = models.ForeignKey('entities.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
     order_date = models.DateField(verbose_name=_("Order date"))
     required_date = models.DateField(verbose_name=_("Required delivery date"))
     shipped_date = models.DateField(verbose_name=_("Shipped date"))
@@ -33,7 +33,7 @@ class OrderProduct(models.Model):
 
 class Invoice(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name=_("Order"))
-    customer = models.ForeignKey('core.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
+    customer = models.ForeignKey('entities.Entity', on_delete=models.CASCADE, verbose_name=_("Customer"))
     issue_date = models.DateField(verbose_name=_("Invoice issue date"))
     due_date = models.DateField(verbose_name=_("Invoice due date"))
     payment_date = models.DateField(verbose_name=_("Payment date"))

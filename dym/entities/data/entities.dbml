@@ -1,0 +1,51 @@
+Table Entity {
+    id integer [primary key, not null, auto increment, note: 'Entity ID']
+    display_name varchar(30) [not null, note: 'Display name']
+    company_name varchar(70) [not null, note: 'Company name']
+    company_id varchar(30) [not null, note: 'Company ID']
+    company_vat varchar(20) [not null, note: 'Company VAT']
+    birth_number varchar(10) [null, note: 'Birth number']
+    entity_type integer [not null, note: 'Entity type']
+    legal_entity_type integer [not null, note: 'Legal entity type']
+    created_at timestamp [not null, default: 'now()', note: 'Created at']
+    updated_at timestamp [not null, default: 'now()', note: 'Updated at']
+}
+
+Table Address {
+    id integer [primary key, not null, auto increment, note: 'Address ID']
+    entity_id integer [not null, ref: > Entity.id, note: 'Entity']
+    street varchar(100) [not null, note: 'Street']
+    city varchar(50) [not null, note: 'City']
+    postal_code varchar(20) [not null, note: 'Postal code']
+    country varchar(50) [not null, note: 'Country']
+    address_type integer [not null, note: 'Address type']
+    created_at timestamp [not null, note: 'Created at']
+    updated_at timestamp [not null, note: 'Updated at']
+}
+
+Table ContactPerson {
+    id integer [primary key, not null, auto increment, note: 'Contact Person ID']
+    entity_id integer [not null, ref: > Entity.id, note: 'Entity']
+    first_name varchar(50) [not null, note: 'First name']
+    last_name varchar(50) [not null, note: 'Last name']
+    email varchar [not null, note: 'Email address']
+    phone varchar(20) [not null, note: 'Phone number']
+    position varchar(50) [not null, note: 'Position']
+    is_primary boolean [not null, default: false, note: 'Primary contact']
+    created_at timestamp [not null, note: 'Created at']
+    updated_at timestamp [not null, note: 'Updated at']
+}
+
+Table BankAccount {
+    id integer [primary key, not null, auto increment, note: 'Bank Account ID']
+    entity_id integer [not null, ref: > Entity.id, note: 'Entity']
+    account_name varchar(50) [not null, note: 'Account name']
+    bank_account_number varchar(30) [not null, note: 'Bank account number']
+    iban varchar(34) [not null, note: 'IBAN']
+    swift varchar(11) [not null, note: 'SWIFT code']
+    bank_name varchar(100) [not null, note: 'Bank name']
+    currency varchar(3) [not null, note: 'Account currency']
+    is_primary boolean [not null, default: false, note: 'Primary account']
+    created_at timestamp [not null, note: 'Created at']
+    updated_at timestamp [not null, note: 'Updated at']
+}

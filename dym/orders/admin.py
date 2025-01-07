@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from products.models import Product
 from orders.models import Order, OrderProduct, Invoice
-from core.models import Entity
+from entities.models import Entity
 from django.conf import settings
 
 if settings.CURRENT_COMPANY == "dym":

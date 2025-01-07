@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Create Entity" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Create Entity" %}</h1>
+    <form method="post" class="space-y-8 bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+        {% csrf_token %}
+        
+        <!-- Entity Information -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <fieldset class="space-y-4">
+                <legend class="text-lg font-bold text-gray-800">{% trans "Entity Information" %}</legend>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="id_display_name" class="block text-sm font-medium text-gray-700">{% trans "Název společnosti" %}</label>
+                        {{ entity_form.display_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_company_id" class="block text-sm font-medium text-gray-700">{% trans "IČO společnosti" %}</label>
+                        {{ entity_form.company_id }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_company_vat" class="block text-sm font-medium text-gray-700">{% trans "DIČ společnosti" %}</label>
+                        {{ entity_form.company_vat }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_birth_number" class="block text-sm font-medium text-gray-700">{% trans "Rodné číslo" %}</label>
+                        {{ entity_form.birth_number }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Typ subjektu" %}</label>
+                        {{ entity_form.entity_type }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_legal_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Typ právnické osoby" %}</label>
+                        {{ entity_form.legal_entity_type }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        
+        <!-- Addresses -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <fieldset class="space-y-4">
+                <legend class="text-lg font-bold text-gray-800">{% trans "Addresses" %}</legend>
+                {{ address_formset.management_form }}
+                <div class="grid grid-cols-2 gap-6">
+                    {% for form in address_formset %}
+                        <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200">
+                            {{ form.as_p }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+        
+        <!-- Contact Persons -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <fieldset class="space-y-4">
+                <legend class="text-lg font-bold text-gray-800">{% trans "Contact Persons" %}</legend>
+                {{ contact_person_formset.management_form }}
+                <div class="grid grid-cols-2 gap-6">
+                    {% for form in contact_person_formset %}
+                        <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200">
+                            {{ form.as_p }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+        
+        <!-- Bank Accounts -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <fieldset class="space-y-4">
+                <legend class="text-lg font-bold text-gray-800">{% trans "Bank Accounts" %}</legend>
+                {{ bank_account_formset.management_form }}
+                <div class="grid grid-cols-2 gap-6">
+                    {% for form in bank_account_formset %}
+                        <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200">
+                            {{ form.as_p }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300">
+                {% trans "Save" %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

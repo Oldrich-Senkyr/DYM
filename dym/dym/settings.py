@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'orders',
     'products',
     'entities',
+     # ... ostatní aplikace
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'agent.AppUser'
