@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 18:47+0100\n"
+"POT-Creation-Date: 2025-01-07 21:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\orders\admin.py:26 .\orders\models.py:27 .\orders\models.py:35
+
+#: .\orders\admin.py:29 .\orders\models.py:27 .\orders\models.py:35
 msgid "Order"
 msgstr ""
 
-#: .\orders\admin.py:27
+#: .\orders\admin.py:30
 msgid "Orders"
 msgstr ""
 
-#: .\orders\admin.py:42
+#: .\orders\admin.py:45
 msgid "Order Product"
 msgstr ""
 
-#: .\orders\admin.py:43
+#: .\orders\admin.py:46
 msgid "Order Products"
 msgstr ""
 
-#: .\orders\admin.py:64
+#: .\orders\admin.py:67
 msgid "Invoice"
 msgstr ""
 
-#: .\orders\admin.py:65
+#: .\orders\admin.py:68
 msgid "Invoices"
 msgstr ""
 

@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from .forms import SignupForm 
 
 # Create your views here.
-def my_logout (request):                        #Kdybych pouzil logout kolidovalo by to s internim logout
+def logout_view (request):                        #Kdybych pouzil logout kolidovalo by to s internim logout
     if request.method == 'POST':
         logout(request)
         return redirect('/')

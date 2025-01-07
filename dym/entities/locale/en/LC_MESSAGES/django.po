@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-07 21:42+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\entities\models.py:5 .\entities\templates\entities\entity_create.html:19
+msgid "Display name"
+msgstr ""
+
+#: .\entities\models.py:6 .\entities\templates\entities\entity_create.html:23
+msgid "Company name"
+msgstr ""
+
+#: .\entities\models.py:7 .\entities\templates\entities\entity_create.html:35
+msgid "Company ID"
+msgstr ""
+
+#: .\entities\models.py:8 .\entities\templates\entities\entity_create.html:40
+msgid "Company VAT"
+msgstr ""
+
+#: .\entities\models.py:9 .\entities\templates\entities\entity_create.html:44
+msgid "Birth number"
+msgstr ""
+
+#: .\entities\models.py:11
+msgid "Business"
+msgstr ""
+
+#: .\entities\models.py:12
+msgid "Non-profit"
+msgstr ""
+
+#: .\entities\models.py:13
+msgid "Contributory organization"
+msgstr ""
+
+#: .\entities\models.py:15
+msgid "Entity type"
+msgstr ""
+
+#: .\entities\models.py:17
+msgid "Natural person"
+msgstr ""
+
+#: .\entities\models.py:18
+msgid "Legal entity"
+msgstr ""
+
+#: .\entities\models.py:20 .\entities\templates\entities\entity_create.html:31
+msgid "Legal entity type"
+msgstr ""
+
+#: .\entities\models.py:21 .\entities\models.py:42 .\entities\models.py:55
+#: .\entities\models.py:70
+msgid "Created at"
+msgstr ""
+
+#: .\entities\models.py:22 .\entities\models.py:43 .\entities\models.py:56
+#: .\entities\models.py:71
+msgid "Updated at"
+msgstr ""
+
+#: .\entities\models.py:25 .\entities\models.py:32 .\entities\models.py:48
+#: .\entities\models.py:62
+msgid "Entity"
+msgstr ""
+
+#: .\entities\models.py:26
+msgid "Entities"
+msgstr ""
+
+#: .\entities\models.py:33 .\entities\templates\entities\entity_create.html:65
+msgid "Street"
+msgstr ""
+
+#: .\entities\models.py:34 .\entities\templates\entities\entity_create.html:60
+msgid "City"
+msgstr ""
+
+#: .\entities\models.py:35 .\entities\templates\entities\entity_create.html:71
+msgid "Postal code"
+msgstr ""
+
+#: .\entities\models.py:36 .\entities\templates\entities\entity_create.html:76
+msgid "Country"
+msgstr ""
+
+#: .\entities\models.py:38
+msgid "Billing"
+msgstr ""
+
+#: .\entities\models.py:39
+msgid "Shipping"
+msgstr ""
+
+#: .\entities\models.py:40
+msgid "Other"
+msgstr ""
+
+#: .\entities\models.py:41 .\entities\templates\entities\entity_create.html:80
+msgid "Address type"
+msgstr ""
+
+#: .\entities\models.py:49
+msgid "First name"
+msgstr ""
+
+#: .\entities\models.py:50
+msgid "Last name"
+msgstr ""
+
+#: .\entities\models.py:51
+msgid "Email address"
+msgstr ""
+
+#: .\entities\models.py:52
+msgid "Phone number"
+msgstr ""
+
+#: .\entities\models.py:53 .\entities\templates\entities\entity_create.html:113
+msgid "Position"
+msgstr ""
+
+#: .\entities\models.py:54
+msgid "Primary contact"
+msgstr ""
+
+#: .\entities\models.py:63
+msgid "Account name"
+msgstr ""
+
+#: .\entities\models.py:64
+msgid "Bank account number"
+msgstr ""
+
+#: .\entities\models.py:65 .\entities\templates\entities\entity_create.html:144
+msgid "IBAN"
+msgstr ""
+
+#: .\entities\models.py:66
+msgid "SWIFT code"
+msgstr ""
+
+#: .\entities\models.py:67
+msgid "Bank name"
+msgstr ""
+
+#: .\entities\models.py:68
+msgid "Account currency"
+msgstr ""
+
+#: .\entities\models.py:69
+msgid "Primary account"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:5
+#: .\entities\templates\entities\entity_create.html:9
+msgid "Create Entity"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:16
+msgid "Entity Information"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:27
+msgid "Subject"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:54
+msgid "Address"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:91
+msgid "Contact Person"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:96
+msgid "First Name"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:100
+msgid "Last Name"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:105
+msgid "Email"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:109
+msgid "Phone Number"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:124
+msgid "Bank Account"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:130
+msgid "Bank Name"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:134
+msgid "Account Name"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:139
+msgid "Account Number"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:149
+msgid "SWIFT"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:161
+msgid "Save"
+msgstr ""

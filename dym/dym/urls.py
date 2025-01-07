@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
+from django.conf import settings
 
 urlpatterns = [
     # Cesty mimo i18n_patterns, např. pro přepínání jazyka
@@ -32,3 +33,8 @@ urlpatterns += i18n_patterns(
   
     # Add other language-specific URLs here as needed
 )
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

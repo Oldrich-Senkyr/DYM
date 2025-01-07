@@ -2,11 +2,11 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Create Entity" %}{% endblock %}
+{% block title %}{% trans "Edit Entity" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Create Entity" %}</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Edit Entity" %}</h1>
     <form method="post" class="space-y-2 bg-white p-8 rounded-lg shadow-lg border border-gray-200">
         {% csrf_token %}
         
@@ -35,7 +35,6 @@
                         <label for="id_company_id" class="block text-sm font-medium text-gray-700">{% trans "Company ID" %}</label>
                         {{ entity_form.company_id }}
                     </div>
-                    
                     <div class="form-group">
                         <label for="id_company_vat" class="block text-sm font-medium text-gray-700">{% trans "Company VAT" %}</label>
                         {{ entity_form.company_vat }}
@@ -55,23 +54,18 @@
                 {{ address_formset.management_form }}
                 <div class="grid grid-cols-2 gap-1">
                     {% for form in address_formset %}
-                        
                         <div class="form-group">
                             <label for="{{ form.city.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "City" %}</label>
                             {{ form.city }}
                         </div>
-
                         <div class="form-group">
                             <label for="{{ form.street.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Street" %}</label>
                             {{ form.street }}
                         </div>
-                    
-
                         <div class="form-group">
                             <label for="{{ form.postal_code.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Postal code" %}</label>
                             {{ form.postal_code }}
                         </div>
-  
                         <div class="form-group">
                             <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Country" %}</label>
                             {{ form.country }}
@@ -84,7 +78,7 @@
                 </div>
             </fieldset>
         </div>
-        
+
         <!-- Contact Persons -->
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-2">
@@ -100,7 +94,6 @@
                             <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Last Name" %}</label>
                             {{ form.last_name }}
                         </div>
-                        
                         <div class="form-group">
                             <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Email" %}</label>
                             {{ form.email }}
@@ -117,7 +110,7 @@
                 </div>
             </fieldset>
         </div>
-        
+
         <!-- Bank Accounts -->
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-2">
@@ -125,7 +118,6 @@
                 {{ bank_account_formset.management_form }}
                 <div class="grid grid-cols-2 gap-1">
                     {% for form in bank_account_formset %}
-                        
                         <div class="form-group">
                             <label for="{{ form.bank_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Bank Name" %}</label>
                             {{ form.bank_name }}
@@ -134,27 +126,23 @@
                             <label for="{{ form.account_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Account Name" %}</label>
                             {{ form.account_name }}
                         </div>
-                        
                         <div class="form-group">
                             <label for="{{ form.bank_account_number.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Account Number" %}</label>
                             {{ form.bank_account_number }}
                         </div>
-                        
                         <div class="form-group">
                             <label for="{{ form.iban.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "IBAN" %}</label>
                             {{ form.iban }}
                         </div>
-
                         <div class="form-group">
                             <label for="{{ form.swift.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "SWIFT" %}</label>
                             {{ form.swift }}
                         </div>
-
                     {% endfor %}
                 </div>
             </fieldset>
         </div>
-        
+
         <!-- Submit Button -->
         <div class="text-center">
             <button type="submit" class="px-8 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300">
