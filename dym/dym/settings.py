@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core',
     'orders',
     'products',
+    'entities',
 ]
 
 AUTH_USER_MODEL = 'agent.AppUser'
