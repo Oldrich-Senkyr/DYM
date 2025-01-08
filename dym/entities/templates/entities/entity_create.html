@@ -2,6 +2,8 @@
 {% load static %}
 {% load i18n %}
 
+{% load form_tags %}   <!-- Tagy pro validaci  -->     
+
 {% block title %}{% trans "Create Entity" %}{% endblock %}
 
 {% block content %}
@@ -31,18 +33,14 @@
                     <div class="form-group">
                         <label for="id_display_name" class="block text-sm font-medium text-gray-700">{% trans "Display name" %}</label>
                         {{ entity_form.display_name }}
-                        {% if entity_form.display_name.errors %}
-                            p class="text-red-600 text-sm">{{ entity_form.display_name.errors|join:", " }}</p>
-                        {% endif %}
+                        {% render_field_errors entity_form.display_name %}
                     </div>
                     
                      <!-- Entity Company name -->
                     <div class="form-group">
                         <label for="id_company_name" class="block text-sm font-medium text-gray-700">{% trans "Company name" %}</label>
                         {{ entity_form.company_name }}
-                        {% if entity_form.company.errors %}
-                            p class="text-red-600 text-sm">{{ entity_form.company.errors|join:", " }}</p>
-                        {% endif %}
+                        {% render_field_errors entity_form.company_name %}
                     </div>
                     
                     
@@ -50,6 +48,7 @@
                     <div class="form-group">
                         <label for="id_legal_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Subject" %}</label>
                         {{ entity_form.legal_entity_type }}
+                        {% render_field_errors entity_form.legal_entity_type %}
                     </div>
                     
                     
@@ -57,6 +56,7 @@
                     <div class="form-group">
                         <label for="id_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Legal entity type" %}</label>
                         {{ entity_form.entity_type }}
+                        {% render_field_errors entity_form.entity_type %}
                     </div>
                     
                     
@@ -64,6 +64,7 @@
                     <div class="form-group">
                         <label for="id_company_id" class="block text-sm font-medium text-gray-700">{% trans "Company ID" %}</label>
                         {{ entity_form.company_id }}
+                        {% render_field_errors entity_form.company_id %}
                     </div>
                     
                     
@@ -71,6 +72,7 @@
                     <div class="form-group">
                         <label for="id_company_vat" class="block text-sm font-medium text-gray-700">{% trans "Company VAT" %}</label>
                         {{ entity_form.company_vat }}
+                        {% render_field_errors entity_form.company_vat %}
                     </div>
                     
                     
@@ -78,11 +80,13 @@
                     <div class="form-group">
                         <label for="id_birth_number" class="block text-sm font-medium text-gray-700">{% trans "Birth number" %}</label>
                         {{ entity_form.birth_number }}
+                        {% render_field_errors entity_form.birth_number %}
                     </div>
                 </div>
             </fieldset>
         </div>
-        
+      
+
         <!-- Addresses -->
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-1">
@@ -177,6 +181,11 @@
                         <div class="form-group">
                             <label for="{{ form.bank_account_number.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Account Number" %}</label>
                             {{ form.bank_account_number }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.currency.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Currency" %}</label>
+                            {{ form.currency }}
                         </div>
                         
                         <div class="form-group">

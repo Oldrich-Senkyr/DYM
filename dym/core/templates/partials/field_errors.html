@@ -1,0 +1,7 @@
+{% if errors %}
+    <p class="text-red-600 text-sm">
+        {% for error in errors %}
+            {{ error }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+{% endif %}
