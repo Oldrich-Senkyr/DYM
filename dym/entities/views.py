@@ -21,13 +21,26 @@ class EntityEditView(UpdateView):
     model = Entity
     fields = ['display_name', 'company_name', 'legal_entity_type', 'company_id']
     template_name = 'entity_edit.html'
-    success_url = reverse_lazy('entity_list')
+    success_url = reverse_lazy('entities:entity_list')
 
-class EntityDeleteView(DeleteView):
+
+class EntityDeleteView(DeleteView):  # tohle vola konfirmaci 
     model = Entity
-    template_name = 'entity_confirm_delete.html'
-    success_url = reverse_lazy('entity_list')
+    template_name = 'entities/entity_confirm_delete.html'
+    success_url = reverse_lazy('entities:entity_list')
 
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
+from .models import Entity
+
+class EntityDeleteView(DeleteView): # Tohle je upravena metoda get ktera maze primo nebot konfirmace je v java scriptu
+    model = Entity
+    success_url = reverse_lazy('entities:entity_list')
+
+    def get(self, request, *args, **kwargs):
+        # Přímo smaže objekt bez potvrzovací stránky
+        return self.delete(request, *args, **kwargs)
 
 
 
@@ -35,7 +48,6 @@ def entity_create_view(request):
     if request.method == "POST":
         entity_form = EntityForm(request.POST)
     
-        # `Entity()` není nutné, použije se instance vytvořená níže
         if entity_form.is_valid():
             entity = entity_form.save()  # Uloží se entity a máme instanci
         
@@ -53,12 +65,36 @@ def entity_create_view(request):
                 address_formset.save()
                 contact_person_formset.save()
                 bank_account_formset.save()
-                return redirect("entity_list")  # Přesměrování na seznam entit
+                return redirect("entities:entity_list")  # Přesměrování na seznam entit
+            else:
+               # Debugovací výpisy pro formsety, pokud nejsou validní
+                
+                print("entity_create_view - Address Formset Errors:")
+                for form_index, form_errors in enumerate(address_formset.errors):
+                    print(f"Form {form_index + 1}: {form_errors}")
+
+                print("Contact Person Formset Errors:")
+                for form_index, form_errors in enumerate(contact_person_formset.errors):
+                    print(f"Form {form_index + 1}: {form_errors}")
+
+                print("Bank Account Formset Errors:")
+                for form_index, form_errors in enumerate(bank_account_formset.errors):
+                    print(f"Form {form_index + 1}: {form_errors}")
+
         else:
-            # Pokud entity_form není validní
-            address_formset = AddressFormSet(request.POST)
-            contact_person_formset = ContactPersonFormSet(request.POST)
-            bank_account_formset = BankAccountFormSet(request.POST)
+            # Pokud `entity_form` není validní, přidejte debugovací výpis pro něj
+            print(entity_form.errors)
+            # Přidání popisu, odku že chyby pocházejí
+            for field, errors in entity_form.errors.items():
+                for error in errors:
+                    print(f"Error in {field} field: {error} (from entity)")
+
+            
+        
+        # Vytvořte nové prázdné formsety pro renderování šablony
+        address_formset = AddressFormSet(request.POST)
+        contact_person_formset = ContactPersonFormSet(request.POST)
+        bank_account_formset = BankAccountFormSet(request.POST)
     else:
         # GET request (prázdné formuláře)
         entity_form = EntityForm()

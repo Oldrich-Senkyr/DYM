@@ -27,11 +27,11 @@
                     <td class="px-6 py-3">{{ entity.legal_entity_type }}</td>
                     <td class="px-6 py-3">{{ entity.company_id }}</td>
                     <td class="px-6 py-3">
-                        <a href="{% url 'entity_edit' entity.id %}" class="text-blue-500 hover:text-blue-700">
+                        <a href="{% url 'entities:entity_edit' entity.pk %}" class="text-blue-500 hover:text-blue-700">
                             {% trans "Edit" %}
                         </a>
                         | 
-                        <a href="{% url 'entity_delete' entity.id %}" class="text-red-500 hover:text-red-700">
+                        <a href="{% url 'entities:entity_delete' entity.pk %}" class="text-red-500 hover:text-red-700" onclick="return confirmDelete();">
                             {% trans "Delete" %}
                         </a>
                     </td>
@@ -46,9 +46,16 @@
     </div>
     
     <div class="mt-6 text-center">
-        <a href="{% url 'entity_create' %}" class="px-8 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">
+        <a href="{% url 'entities:entity_create' %}" class="px-8 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">
             {% trans "Create New Entity" %}
         </a>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+function confirmDelete() {
+    return confirm("{% trans 'Are you sure you want to delete this entity?' %}");
+}
+</script>
 {% endblock %}

@@ -31,18 +31,12 @@
                     <div class="form-group">
                         <label for="id_display_name" class="block text-sm font-medium text-gray-700">{% trans "Display name" %}</label>
                         {{ entity_form.display_name }}
-                        {% if entity_form.display_name.errors %}
-                            p class="text-red-600 text-sm">{{ entity_form.display_name.errors|join:", " }}</p>
-                        {% endif %}
                     </div>
                     
                      <!-- Entity Company name -->
                     <div class="form-group">
                         <label for="id_company_name" class="block text-sm font-medium text-gray-700">{% trans "Company name" %}</label>
                         {{ entity_form.company_name }}
-                        {% if entity_form.company.errors %}
-                            p class="text-red-600 text-sm">{{ entity_form.company.errors|join:", " }}</p>
-                        {% endif %}
                     </div>
                     
                     
@@ -83,6 +77,22 @@
             </fieldset>
         </div>
         
+        <!-- Collect All Errors for Entity-->
+        {% set all_errors = [] %}
+        {% for field in entity_form %}
+            {% if field.errors %}
+                {% set _ = all_errors.extend(field.errors) %}
+            {% endif %}
+        {% endfor %}
+
+        <!-- Display All Errors at the End -->
+        {% if all_errors %}
+            <div class="text-red-600 text-sm">
+                <p>{{ all_errors|join:", " }}</p>
+            </div>
+        {% endif %}
+
+
         <!-- Addresses -->
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-1">
