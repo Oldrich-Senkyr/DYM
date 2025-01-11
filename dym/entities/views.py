@@ -84,7 +84,7 @@ def entity_create_view(request):
         else:
             # Pokud `entity_form` není validní, přidejte debugovací výpis pro něj
             print(entity_form.errors)
-            # Přidání popisu, odku že chyby pocházejí
+            # Přidání popisu, odkud že chyby pocházejí
             for field, errors in entity_form.errors.items():
                 for error in errors:
                     print(f"Error in {field} field: {error} (from entity)")
@@ -92,9 +92,9 @@ def entity_create_view(request):
             
         
         # Vytvořte nové prázdné formsety pro renderování šablony
-        address_formset = AddressFormSet(request.POST)
-        contact_person_formset = ContactPersonFormSet(request.POST)
-        bank_account_formset = BankAccountFormSet(request.POST)
+        address_formset = AddressFormSet(request.POST or None)
+        contact_person_formset = ContactPersonFormSet(request.POST or None)
+        bank_account_formset = BankAccountFormSet(request.POST or None)
     else:
         # GET request (prázdné formuláře)
         entity_form = EntityForm()

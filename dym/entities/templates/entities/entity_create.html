@@ -1,7 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% load i18n %}
-
 {% load form_tags %}   <!-- Tagy pro validaci  -->     
 
 {% block title %}{% trans "Create Entity" %}{% endblock %}
@@ -91,49 +90,106 @@
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-1">
                 <legend class="text-lg font-bold text-gray-800">{% trans "Address" %}</legend>
-                {{ address_formset.management_form }}
-
-
-
-
                 <div class="grid grid-cols-2 gap-1">
+                    {{ address_formset.management_form }}
                     {% for form in address_formset %}
-                        
+                        <!-- Zobrazení obecných chyb pro každý formulář -->
+                        {% if form.non_field_errors %}
+                        <div class="bg-red-50 border border-red-300 text-red-700 p-4 rounded">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
                         <div class="form-group">
                             <label for="{{ form.city.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "City" %}</label>
                             {{ form.city }}
+                            <!-- Chyby na úrovni pole 'city' -->
+                            {% if form.city.errors %}
+                            <div class="text-red-600 text-sm">
+                                {% for error in form.city.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
 
                         <div class="form-group">
                             <label for="{{ form.street.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Street" %}</label>
                             {{ form.street }}
+                            <!-- Chyby na úrovni pole 'street' -->
+                            {% if form.street.errors %}
+                            <div class="text-red-600 text-sm">
+                                {% for error in form.street.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
-                    
 
                         <div class="form-group">
                             <label for="{{ form.postal_code.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Postal code" %}</label>
                             {{ form.postal_code }}
+                            <!-- Chyby na úrovni pole 'postal_code' -->
+                            {% if form.postal_code.errors %}
+                            <div class="text-red-600 text-sm">
+                                {% for error in form.postal_code.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
-  
+
                         <div class="form-group">
                             <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Country" %}</label>
                             {{ form.country }}
+                            <!-- Chyby na úrovni pole 'country' -->
+                            {% if form.country.errors %}
+                            <div class="text-red-600 text-sm">
+                                {% for error in form.country.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
+
                         <div class="form-group">
                             <label for="{{ form.address_type.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Address type" %}</label>
                             {{ form.address_type }}
+                            <!-- Chyby na úrovni pole 'address_type' -->
+                            {% if form.address_type.errors %}
+                            <div class="text-red-600 text-sm">
+                                {% for error in form.address_type.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
             </fieldset>
+            <!-- Zobrazení obecných chyb pro celý formset -->
+            {% if address_formset.non_form_errors %}
+            <div class="bg-red-50 border border-red-300 text-red-700 p-4 rounded mt-4">
+                <ul>
+                    {% for error in address_formset.non_form_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        
+    
         <!-- Contact Persons -->
         <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
             <fieldset class="space-y-2">
                 <legend class="text-lg font-bold text-gray-800">{% trans "Contact Person" %}</legend>
                 {{ contact_person_formset.management_form }}
                 <div class="grid grid-cols-2 gap-1">
+                    {{ contact_person_formset.management_form }}
                     {% for form in contact_person_formset %}
                         <div class="form-group">
                             <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "First Name" %}</label>
@@ -167,6 +223,7 @@
                 <legend class="text-lg font-bold text-gray-800">{% trans "Bank Account" %}</legend>
                 {{ bank_account_formset.management_form }}
                 <div class="grid grid-cols-2 gap-1">
+                    {{ bank_account_formset.management_form }}
                     {% for form in bank_account_formset %}
                         
                         <div class="form-group">

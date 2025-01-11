@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Entity(models.Model):
     display_name = models.CharField(max_length=30, verbose_name=_("Display name"))
-    company_name = models.CharField(max_length=70, verbose_name=_("Company name"))
+    company_name = models.CharField(max_length=70, blank=False, null=False, verbose_name=_("Company name"))
     company_id = models.CharField(
     max_length=30, 
     unique=True, 
@@ -36,10 +36,10 @@ class Entity(models.Model):
 
 class Address(models.Model):
     entity = models.ForeignKey('Entity', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Entity"))
+    city = models.CharField(max_length=50,blank=False, null=False, verbose_name=_("City"))
     street = models.CharField(max_length=100, verbose_name=_("Street"))
-    city = models.CharField(max_length=50, verbose_name=_("City"))
-    postal_code = models.CharField(max_length=20, verbose_name=_("Postal code"))
-    country = models.CharField(max_length=50, verbose_name=_("Country"))
+    postal_code = models.CharField(max_length=20, blank=False, null=False, verbose_name=_("Postal code"))
+    country = models.CharField(max_length=50,blank=False, null=False, verbose_name=_("Country"))
     address_type = models.IntegerField(choices=[
         (0, _("Billing")),
         (1, _("Shipping")),
@@ -52,10 +52,10 @@ class Address(models.Model):
 
 class ContactPerson(models.Model):
     entity = models.ForeignKey('Entity', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Entity"))
-    first_name = models.CharField(max_length=50, verbose_name=_("First name"))
-    last_name = models.CharField(max_length=50, verbose_name=_("Last name"))
+    first_name = models.CharField(max_length=50, blank=False, null=False,verbose_name=_("First name"))
+    last_name = models.CharField(max_length=50, blank=False, null=False,verbose_name=_("Last name"))
     email = models.EmailField(verbose_name=_("Email address"))
-    phone = models.CharField(max_length=20, verbose_name=_("Phone number"))
+    phone = models.CharField(max_length=20, blank=False, null=False, verbose_name=_("Phone number"))
     position = models.CharField(max_length=50, verbose_name=_("Position"))
     is_primary = models.BooleanField(default=False, verbose_name=_("Primary contact"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
@@ -66,11 +66,11 @@ class ContactPerson(models.Model):
 
 class BankAccount(models.Model):
     entity = models.ForeignKey('Entity', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Entity"))
-    account_name = models.CharField(max_length=50, verbose_name=_("Account name"))
-    bank_account_number = models.CharField(max_length=30, verbose_name=_("Bank account number"))
+    account_name = models.CharField(max_length=50, blank=False, null=False, verbose_name=_("Account name"))
+    bank_account_number = models.CharField(max_length=30, blank=False, null=False, verbose_name=_("Bank account number"))
     iban = models.CharField(max_length=34, verbose_name=_("IBAN"))
     swift = models.CharField(max_length=11, verbose_name=_("SWIFT code"))
-    bank_name = models.CharField(max_length=100, verbose_name=_("Bank name"))
+    bank_name = models.CharField(max_length=100, blank=False, null=False, verbose_name=_("Bank name"))
     currency = models.IntegerField(choices=[
         (0, _("CZK")),
         (1, _("EUR")),
