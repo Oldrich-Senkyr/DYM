@@ -28,12 +28,6 @@
                 <legend class="text-lg font-bold text-gray-800">{% trans "Entity Information" %}</legend>
                 <div class="grid grid-cols-2 gap-1">
                     
-                    <!-- Entity Dispaly name -->
-                    <div class="form-group">
-                        <label for="id_display_name" class="block text-sm font-medium text-gray-700">{% trans "Display name" %}</label>
-                        {{ entity_form.display_name }}
-                        {% render_field_errors entity_form.display_name %}
-                    </div>
                     
                      <!-- Entity Company name -->
                     <div class="form-group">
@@ -42,21 +36,6 @@
                         {% render_field_errors entity_form.company_name %}
                     </div>
                     
-                    
-                    <!-- Entity Legal Entity Type -->
-                    <div class="form-group">
-                        <label for="id_legal_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Subject" %}</label>
-                        {{ entity_form.legal_entity_type }}
-                        {% render_field_errors entity_form.legal_entity_type %}
-                    </div>
-                    
-                    
-                    <!-- Entity Legal entity_type -->
-                    <div class="form-group">
-                        <label for="id_entity_type" class="block text-sm font-medium text-gray-700">{% trans "Legal entity type" %}</label>
-                        {{ entity_form.entity_type }}
-                        {% render_field_errors entity_form.entity_type %}
-                    </div>
                     
                     
                     <!-- Entity Company ID -->
@@ -72,14 +51,6 @@
                         <label for="id_company_vat" class="block text-sm font-medium text-gray-700">{% trans "Company VAT" %}</label>
                         {{ entity_form.company_vat }}
                         {% render_field_errors entity_form.company_vat %}
-                    </div>
-                    
-                    
-                    <!-- Entity birth number -->
-                    <div class="form-group">
-                        <label for="id_birth_number" class="block text-sm font-medium text-gray-700">{% trans "Birth number" %}</label>
-                        {{ entity_form.birth_number }}
-                        {% render_field_errors entity_form.birth_number %}
                     </div>
                 </div>
             </fieldset>

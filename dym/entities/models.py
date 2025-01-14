@@ -2,28 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class Entity(models.Model):
-    display_name = models.CharField(max_length=30, verbose_name=_("Display name"))
-    company_name = models.CharField(max_length=70, blank=False, null=False, verbose_name=_("Company name"))
-    company_id = models.CharField(
-    max_length=30, 
-    unique=True, 
-    null=False, 
-    verbose_name=_("Company ID")
-    )
-    company_vat = models.CharField(max_length=20, verbose_name=_("Company VAT"))
-    birth_number = models.CharField(max_length=10, verbose_name=_("Birth number"), blank=True, null=True)
-    ENTITY_TYPE_CHOICES = [
-        (1, _("Business")),
-        (2, _("Non-profit")),
-        (3, _("Contributory organization")),
-    ]
-    entity_type = models.IntegerField(choices=ENTITY_TYPE_CHOICES, verbose_name=_("Entity type"))
-    LEGAL_ENTITY_TYPE_CHOICES = [
-        (1, _("Legal entity")),
-        (2, _("Natural person")),
-     
-    ]
-    legal_entity_type = models.IntegerField(choices=LEGAL_ENTITY_TYPE_CHOICES, verbose_name=_("Legal entity type"))
+    company_name = models.CharField ( max_length=70, blank=False, null=False, verbose_name=_("Company name (First name, Last name)"))
+    company_id = models.CharField   ( max_length=30, unique=True, null=False, verbose_name=_("Company ID"))
+    company_vat = models.CharField  (max_length=20,  verbose_name=_("Company VAT"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
 
@@ -36,8 +17,8 @@ class Entity(models.Model):
 
 class Address(models.Model):
     entity = models.ForeignKey('Entity', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Entity"))
-    city = models.CharField(max_length=50,blank=False, null=False, verbose_name=_("City"))
     street = models.CharField(max_length=100, verbose_name=_("Street"))
+    city = models.CharField(max_length=50,blank=False, null=False, verbose_name=_("City"))
     postal_code = models.CharField(max_length=20, blank=False, null=False, verbose_name=_("Postal code"))
     country = models.CharField(max_length=50,blank=False, null=False, verbose_name=_("Country"))
     address_type = models.IntegerField(choices=[
@@ -78,8 +59,6 @@ class BankAccount(models.Model):
         (3, _("GBP")),
         (4, _("CHF")),        
     ], verbose_name=_("Account currency"))
-
-    is_primary = models.BooleanField(default=False, verbose_name=_("Primary account"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
     def __str__(self):

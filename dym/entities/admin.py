@@ -2,19 +2,31 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from .models import Entity, Address, ContactPerson, BankAccount
 
-@admin.register(Entity)
+
+from django import forms
+from django.contrib import admin
+from .models import Entity
+
+class EntityAdminForm(forms.ModelForm):
+    class Meta:
+        model = Entity
+        fields = '__all__'
+
+    # Změna velikosti inputu pro company_name
+    company_name = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 400px;'}), label=_("Company name (First name, Last name)"))  # Lazy překlad)
+    company_id = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 100px;'}), label=_('Company ID'))  # Zkráceno na polovinu
+    company_vat = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 100px;'}), label=_('VAT ID'))  # Zkráceno na polovinu
+   
+
 class EntityAdmin(admin.ModelAdmin):
-    list_display = (
-        'display_name', 
-        'company_name', 
-        'entity_type', 
-        'legal_entity_type', 
-        'created_at', 
-        'updated_at'
-    )
-    list_filter = ('entity_type', 'legal_entity_type')
-    search_fields = ('display_name', 'company_name', 'company_id', 'company_vat')
+    form = EntityAdminForm
+    list_display = ('company_name', 'created_at', 'updated_at')
+    list_filter = ('company_name', 'company_id')
+    search_fields = ('company_name', 'company_id', 'company_vat')
     ordering = ('-created_at',)
+
+admin.site.register(Entity, EntityAdmin)
+
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
@@ -73,12 +85,10 @@ class BankAccountAdmin(admin.ModelAdmin):
         'swift', 
         'bank_name', 
         'currency', 
-        'is_primary', 
         'created_at', 
         'updated_at'
     )
     list_filter = (
-        'is_primary', 
         'currency',
     )
     search_fields = (

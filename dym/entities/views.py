@@ -20,7 +20,7 @@ class EntityListView(ListView):
 class EntityEditView(UpdateView):
     model = Entity
     fields = ['display_name', 'company_name', 'legal_entity_type', 'company_id']
-    template_name = 'entity_edit.html'
+    template_name = 'entities/entity_edit.html'
     success_url = reverse_lazy('entities:entity_list')
 
 
