@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'orders',
     'products',
     'entities',
+    'integral',
      # ... ostatní aplikace
     'widget_tweaks',
 ]

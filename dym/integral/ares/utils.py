@@ -10,10 +10,19 @@ def get_data_from_ares(ico):
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
+            company_name = str(data.get("obchodniJmeno", ""))
+            company_ID =  str(data.get("ico", ""))
+            vat_ID = str(data.get("dic", ""))
+            
+            # Rejstrik obchodnich spolecnosti
+            ROS = data.get("pravniForma", "")
+            legal_form, entity_type = get_entity_info(int(ROS))
             return {
-                "Company Name": data.get("obchodniJmeno", ""),
-                "Company ID": data.get("ico", ""),
-                "VAT ID": data.get("dic", ""),
+                "Company Name": company_name,
+                "Company ID": company_ID,
+                "VAT ID": vat_ID,
+                "Legal Form": legal_form,
+                "Entity Type": entity_type,
             }
         else:
             print(f"Chyba: API vrátilo status {response.status_code} pro IČO {ico}")
@@ -22,55 +31,6 @@ def get_data_from_ares(ico):
         print(f"Chyba při získávání dat pro IČO {ico}: {e}")
         return None
 
-
-class Command(BaseCommand):
-    help = "Načte data z ARES pro zadané IČO a zapíše je do CSV souboru."
-
-    def add_arguments(self, parser):
-        parser.add_argument(
-            "ico_list",
-            nargs="+",
-            help="Seznam IČO pro načtení dat z ARES",
-        )
-        parser.add_argument(
-            "--output",
-            type=str,
-            default="ares_data.csv",
-            help="Cesta k výstupnímu CSV souboru",
-        )
-
-    def handle(self, *args, **options):
-        ico_list = options["ico_list"]
-        output_file = options["output"]
-
-        # Inicializace seznamu pro data
-        data_list = []
-
-        # Načtení dat pro každé IČO
-        for ico in ico_list:
-            data = get_data_from_ares(ico)
-            if data:
-                data_list.append(data)
-                print(f"Data načtena pro IČO {ico}")
-            else:
-                print(f"Data nebyla načtena pro IČO {ico}")
-
-        if not data_list:
-            print("Žádná data k zapsání.")
-            return
-
-        # Hlavička CSV
-        fieldnames = ["Company Name", "Company ID", "VAT ID"]
-
-        # Zapsání dat do CSV souboru
-        try:
-            with open(output_file, mode="w", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=fieldnames)
-                writer.writeheader()
-                writer.writerows(data_list)
-            print(f"CSV soubor '{output_file}' byl vytvořen s daty z ARES.")
-        except ValueError as e:
-            print(f"Chyba při zápisu do CSV: {e}")
 
 
 # Dictionary mapping codes to their corresponding names and types
@@ -154,9 +114,9 @@ def get_entity_info(code):
     return entity_dict.get(code, ("Unknown", "Unknown"))
 
 # Example usage:
-code = 121
-name, entity_type = get_entity_info(code)
-print(f"Kód: {code}, Název: {name}, Typ: {entity_type}")
+#code = 121
+#name, entity_type = get_entity_info(code)
+#print(f"Kód: {code}, Název: {name}, Typ: {entity_type}")
 
 # Output will be:
 # Kód: 121, Název: Akciová společnost, Typ: právnická osoba
