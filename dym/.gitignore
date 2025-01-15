@@ -1,0 +1,14 @@
+# Ignorovat adresář virtuálního prostředí
+def_files/
+
+# Ignorovat všechny soubory s příponou .log
+*.log
+
+# Ignorovat soubory s příponou .pyc (Python bytecode)
+*.pyc
+
+# Ignorovat soubor .env (např. pro citlivé informace)
+.env
+
+# Ignorovat všechny soubory ve složce build/
+build/
