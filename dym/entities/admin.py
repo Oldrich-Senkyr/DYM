@@ -13,10 +13,12 @@ class EntityAdminForm(forms.ModelForm):
         fields = '__all__'
 
     # Změna velikosti inputu pro company_name
-    company_name = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 400px;'}), label=_("Company name (First name, Last name)"))  # Lazy překlad)
+    company_name = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 500px;'}), label=_("Company name (First name, Last name)"))  # Lazy překlad)
     company_id = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 100px;'}), label=_('Company ID'))  # Zkráceno na polovinu
     company_vat = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 100px;'}), label=_('VAT ID'))  # Zkráceno na polovinu
-   
+    legal_form = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 400px;'}), label=_("Legal Form"))
+    entity_type = forms.CharField(widget=forms.TextInput(attrs={'style': 'width: 200px;'}), label=_("Entity Type"))
+    
 
 class EntityAdmin(admin.ModelAdmin):
     form = EntityAdminForm
@@ -79,7 +81,7 @@ class ContactPersonAdmin(admin.ModelAdmin):
 class BankAccountAdmin(admin.ModelAdmin):
     list_display = (
         'entity', 
-        'account_name', 
+        'account_owner', 
         'bank_account_number', 
         'iban', 
         'swift', 
@@ -92,7 +94,7 @@ class BankAccountAdmin(admin.ModelAdmin):
         'currency',
     )
     search_fields = (
-        'account_name', 
+        'account_owner', 
         'bank_account_number', 
         'iban', 
         'swift', 

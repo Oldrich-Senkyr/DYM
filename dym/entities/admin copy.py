@@ -67,7 +67,7 @@ class ContactPersonAdmin(admin.ModelAdmin):
 class BankAccountAdmin(admin.ModelAdmin):
     list_display = (
         'entity', 
-        'account_name', 
+        'account_owner', 
         'bank_account_number', 
         'iban', 
         'swift', 
@@ -82,7 +82,7 @@ class BankAccountAdmin(admin.ModelAdmin):
         'currency',
     )
     search_fields = (
-        'account_name', 
+        'account_owner', 
         'bank_account_number', 
         'iban', 
         'swift', 

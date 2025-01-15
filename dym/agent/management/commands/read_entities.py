@@ -1,6 +1,6 @@
 # core/management/commands/generate_csv.py
 
-import csv
+import csv, os
 from django.core.management.base import BaseCommand
 from integral.ares.utils import get_data_from_ares
 
@@ -19,7 +19,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         icos = kwargs['icos']
-        output_file = kwargs['output']
+        filename = kwargs['output']
+
+        directory = 'dev_files/mock_data' 
+        output_file = os.path.join(directory, filename)
+
+
 
         data_list = []
         for ico in icos:

@@ -4,9 +4,11 @@ from django.utils.translation import gettext_lazy as _
 class Entity(models.Model):
     company_name = models.CharField ( max_length=70, blank=False, null=False, verbose_name=_("Company name (First name, Last name)"))
     company_id = models.CharField   ( max_length=30, unique=True, null=False, verbose_name=_("Company ID"))
-    company_vat = models.CharField  (max_length=20,  verbose_name=_("Company VAT"))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
+    company_vat = models.CharField  ( max_length=20,  verbose_name=_("Company VAT"))
+    legal_form = models.CharField   ( max_length=70, verbose_name=_("Legal Form"))
+    entity_type = models.CharField  ( max_length=30,  verbose_name=_("Entity Type"))
+    created_at = models.DateTimeField( auto_now_add=True, verbose_name=_("Created at"))
+    updated_at = models.DateTimeField( auto_now=True, verbose_name=_("Updated at"))
 
     class Meta:
         verbose_name = _("Entity")
@@ -47,7 +49,7 @@ class ContactPerson(models.Model):
 
 class BankAccount(models.Model):
     entity = models.ForeignKey('Entity', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Entity"))
-    account_name = models.CharField(max_length=50, blank=False, null=False, verbose_name=_("Account name"))
+    account_owner = models.CharField(max_length=50, blank=False, null=False, verbose_name=_("Account owner"))
     bank_account_number = models.CharField(max_length=30, blank=False, null=False, verbose_name=_("Bank account number"))
     iban = models.CharField(max_length=34, verbose_name=_("IBAN"))
     swift = models.CharField(max_length=11, verbose_name=_("SWIFT code"))
@@ -62,4 +64,4 @@ class BankAccount(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
     def __str__(self):
-        return f"{self.bank_name} - {self.account_name} ({self.currency})"
+        return f"{self.bank_name} - {self.account_owner} ({self.currency})"

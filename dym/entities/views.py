@@ -17,11 +17,81 @@ class EntityListView(ListView):
     context_object_name = 'entities'
 
 
+from django.forms import inlineformset_factory
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.db import transaction
+from django.views.generic import UpdateView
+from .models import Entity, Address, ContactPerson, BankAccount
+
 class EntityEditView(UpdateView):
     model = Entity
-    fields = ['display_name', 'company_name', 'legal_entity_type', 'company_id']
+    fields = ['company_name', 'legal_form', 'entity_type', 'company_id', 'company_vat']
     template_name = 'entities/entity_edit.html'
     success_url = reverse_lazy('entities:entity_list')
+
+    # Initialize formsets dynamically
+    def get_formsets(self):
+        # Define the formsets here
+        self.AddressFormset = inlineformset_factory(
+            Entity, Address, fields=['city', 'street', 'postal_code', 'country', 'address_type'], extra=1, can_delete=True
+        )
+        self.ContactPersonFormset = inlineformset_factory(
+            Entity, ContactPerson, fields=['first_name', 'last_name', 'email', 'phone', 'position'], extra=1, can_delete=True
+        )
+        self.BankAccountFormset = inlineformset_factory(
+            Entity, BankAccount, fields=['bank_name', 'account_owner', 'bank_account_number', 'currency', 'iban', 'swift'], extra=1, can_delete=True
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        self.get_formsets()  # Ensure formsets are initialized
+
+        # Initialize formsets
+        if self.request.POST:
+            context['address_formset'] = self.AddressFormset(self.request.POST, instance=self.object)
+            context['contact_person_formset'] = self.ContactPersonFormset(self.request.POST, instance=self.object)
+            context['bank_account_formset'] = self.BankAccountFormset(self.request.POST, instance=self.object)
+        else:
+            context['address_formset'] = self.AddressFormset(instance=self.object)
+            context['contact_person_formset'] = self.ContactPersonFormset(instance=self.object)
+            context['bank_account_formset'] = self.BankAccountFormset(instance=self.object)
+
+        # Add the main entity form to context as well
+        context['entity_form'] = self.get_form()
+
+        # Check if we need to add an extra form
+        if not self.object.address_set.exists():  # If there are no addresses, add extra form
+            self.AddressFormset.extra = 1
+        else:
+            self.AddressFormset.extra = 0
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        address_formset = context['address_formset']
+        contact_person_formset = context['contact_person_formset']
+        bank_account_formset = context['bank_account_formset']
+
+        # Save all forms atomically
+        with transaction.atomic():
+            self.object = form.save()
+            if address_formset.is_valid() and contact_person_formset.is_valid() and bank_account_formset.is_valid():
+                address_formset.instance = self.object
+                contact_person_formset.instance = self.object
+                bank_account_formset.instance = self.object
+                address_formset.save()
+                contact_person_formset.save()
+                bank_account_formset.save()
+            else:
+                return self.render_to_response(self.get_context_data(form=form))
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Return the context with formsets if form is invalid
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 class EntityDeleteView(DeleteView):  # tohle vola konfirmaci 
