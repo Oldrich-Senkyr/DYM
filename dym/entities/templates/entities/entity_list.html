@@ -2,13 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Entity List" %}{% endblock %}
+{% block title %}{% trans "Entities List" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Entity List" %}</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Entities List" %}</h1>
     
-    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+    <div class="bg-gray-200 p-8 rounded-lg shadow-lg border border-gray-200">
         <table class="min-w-full text-sm text-left text-gray-600">
             <thead>
                 <tr class="border-b border-gray-200">
@@ -21,26 +21,24 @@
             </thead>
             <tbody>
                 {% for entity in entities %}
-                <tr class="border-b border-gray-100">
-                    <td class="px-6 py-3">{{ entity.display_name }}</td>
-                    <td class="px-6 py-3">{{ entity.company_name }}</td>
-                    <td class="px-6 py-3">{{ entity.legal_entity_type }}</td>
-                    <td class="px-6 py-3">{{ entity.company_id }}</td>
-                    <td class="px-6 py-3">
+                <tr class="bg-white border-b border-gray-100">
+                    <td class="px-4 py-1">{{ entity.display_name }}</td>
+                    <td class="px-4 py-1">{{ entity.company_name }}</td>
+                    <td class="px-4 py-1">{{ entity.legal_entity_type }}</td>
+                    <td class="px-4 py-1">{{ entity.company_id }}</td>
+                    <td class="px-4 py-1">
                         <a href="{% url 'entities:entity_edit' entity.pk %}" class="text-blue-500 hover:text-blue-700">
                             {% trans "Edit" %}
                         </a>
-                        | 
+                        |
                         <a href="{% url 'entities:entity_delete' entity.pk %}" class="text-red-500 hover:text-red-700" onclick="return confirmDelete();">
                             {% trans "Delete" %}
                         </a>
                     </td>
                 </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="5" class="px-6 py-3 text-center text-gray-500">{% trans "No entities found" %}</td>
-                </tr>
+                <tr class="bg-gray-100 h-2"></tr> <!-- Adding a spacer row to create more noticeable space between rows -->
                 {% endfor %}
+                
             </tbody>
         </table>
     </div>
