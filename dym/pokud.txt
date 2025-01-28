@@ -1,0 +1,5 @@
+ Volume in drive D is Data
+ Volume Serial Number is E0DF-48C4
+
+ Directory of d:\_BData$\Software\Django\Projects\GroupDym\_Project\dym\dym
+

@@ -32,7 +32,6 @@ class EntityEditView(UpdateView):
 
     # Initialize formsets dynamically
     def get_formsets(self):
-        # Define the formsets here
         self.AddressFormset = inlineformset_factory(
             Entity, Address, fields=['city', 'street', 'postal_code', 'country', 'address_type'], extra=1, can_delete=True
         )
@@ -47,6 +46,22 @@ class EntityEditView(UpdateView):
         context = super().get_context_data(**kwargs)
         self.get_formsets()  # Ensure formsets are initialized
 
+        # Adjust extra forms based on existing objects
+        if not self.object.address_set.exists():
+            self.AddressFormset.extra = 1
+        else:
+            self.AddressFormset.extra = 0
+
+        if not self.object.contactperson_set.exists():
+            self.ContactPersonFormset.extra = 1
+        else:
+            self.ContactPersonFormset.extra = 0
+
+        if not self.object.bankaccount_set.exists():
+            self.BankAccountFormset.extra = 1
+        else:
+            self.BankAccountFormset.extra = 0
+
         # Initialize formsets
         if self.request.POST:
             context['address_formset'] = self.AddressFormset(self.request.POST, instance=self.object)
@@ -59,13 +74,6 @@ class EntityEditView(UpdateView):
 
         # Add the main entity form to context as well
         context['entity_form'] = self.get_form()
-
-        # Check if we need to add an extra form
-        if not self.object.address_set.exists():  # If there are no addresses, add extra form
-            self.AddressFormset.extra = 1
-        else:
-            self.AddressFormset.extra = 0
-
         return context
 
     def form_valid(self, form):
@@ -90,8 +98,9 @@ class EntityEditView(UpdateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        # Return the context with formsets if form is invalid
+        # Return the context with formsets if the form is invalid
         return self.render_to_response(self.get_context_data(form=form))
+
 
 
 class EntityDeleteView(DeleteView):  # tohle vola konfirmaci 

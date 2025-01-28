@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'products',
     'entities',
     'integral',
+    'ingest',
      # ... ostatní aplikace
     'widget_tweaks',
 ]
@@ -168,3 +169,5 @@ if DEBUG:
     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
     INTERNAL_IPS = ['127.0.0.1']
 
+#Aplikace ingest
+SECRET_INGEST_TOKEN = 'a64a569afc769a89072e0abb21c20d0ea815860708f6436e95897c70793fdc3c'

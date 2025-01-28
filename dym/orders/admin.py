@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from products.models import Product
-from orders.models import Order, OrderProduct, Invoice
+from orders.models import Order, OrderProduct, Invoice, Sale
 from entities.models import Entity
 from django.conf import settings
 
@@ -14,7 +14,7 @@ if settings.CURRENT_COMPANY == "dym":
     @admin.register(Order)
     class OrderAdmin(admin.ModelAdmin):
         list_display = (
-            'name',
+            'order_number',
             'customer',
             'order_date',
             'required_date',
@@ -24,7 +24,7 @@ if settings.CURRENT_COMPANY == "dym":
             'updated_at',
         )
         list_filter = ('status', 'order_date', 'required_date', 'shipped_date')
-        search_fields = ('name', 'customer__name')
+        search_fields = ('order_number', 'customer__name')
         ordering = ('-created_at',)
         verbose_name = _("Order")
         verbose_name_plural = _("Orders")
@@ -67,6 +67,13 @@ if settings.CURRENT_COMPANY == "dym":
         verbose_name = _("Invoice")
         verbose_name_plural = _("Invoices")
 
+
+@admin.register(Sale)
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('product', 'quantity', 'sale_price', 'sale_date', 'customer')
+    search_fields = ('product__name', 'customer__name')
+    list_filter = ('sale_date',)
+    ordering = ('-sale_date',)
 
 
 
