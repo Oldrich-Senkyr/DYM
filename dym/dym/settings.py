@@ -26,6 +26,38 @@ SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m
 DEBUG = True
 ALLOWED_HOSTS = ['10.20.30.70','10.20.30.71', 'localhost', '127.0.0.1']
 
+# Povolit jen HTTPS připojení
+SET_HTTPS = False
+
+if SET_HTTPS:
+    SECURE_SSL_REDIRECT = True  # Přesměrování HTTP → HTTPS
+    SESSION_COOKIE_SECURE = True  # Session cookies pouze přes HTTPS
+    CSRF_COOKIE_SECURE = True  # CSRF cookie pouze přes HTTPS
+    SECURE_HSTS_SECONDS = 31536000  # HSTS (1 rok)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Povolit HTTPS přes reverse proxy
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/path/to/your/django/project/logs/django.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 #ALLOWED_HOSTS = []
 
 
