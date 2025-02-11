@@ -11,39 +11,49 @@ from django.conf import settings
 
 
 
+import logging
 
-
-
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def ingest_data(request):
+    # Logování všech hlaviček požadavku
+    logger.debug(f"Request headers: {request.headers}")
+
     if request.method == 'POST':
-        # Ověření tokenu
-        token = request.headers.get('Authorization')
-        clean_token = token.removeprefix("Bearer ")
-        test_token = settings.SECRET_INGEST_TOKEN
-        if clean_token != settings.SECRET_INGEST_TOKEN:
-            return JsonResponse({'error': 'Unauthorized'}, status=401)
+        # Zkontrolujte, zda máte hlavičky
+        user_agent = request.headers.get('User-Agent', '').lower()
+        logger.debug(f"User-Agent: {user_agent}")
+
+        is_browser = 'mozilla' in user_agent or 'chrome' in user_agent or 'safari' in user_agent
+        is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+
+        # Pokud není požadavek z prohlížeče, ověř token
+        if not (is_browser or is_ajax):
+            token = request.headers.get('Authorization', '')
+            clean_token = token.removeprefix("Bearer ")
+            if clean_token != settings.SECRET_INGEST_TOKEN:
+                return JsonResponse({'error': 'Unauthorized'}, status=401)
 
         try:
-            # Zpracování dat na základě typu obsahu
-            if request.content_type == 'application/json':
-                payload = json.loads(request.body)
-            else:
+            # Pokud je požadavek z prohlížeče, použij request.POST
+            if is_browser or is_ajax:
                 payload = json.loads(request.POST.get('data', '{}'))
+            else:  # API požadavky s JSON
+                payload = json.loads(request.body)
 
-            # Vytvoření záznamu v databázi
+            # Uložení do databáze
             ingested_data = IngestedData.objects.create(data=payload)
             return JsonResponse({'message': 'Data ingested successfully!', 'id': ingested_data.id}, status=201)
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
         except Exception as e:
-            # Logování chyby (volitelné)
             return JsonResponse({'error': 'An error occurred', 'details': str(e)}, status=500)
 
-    # Zpracování GET požadavku
+    # GET požadavky (zobrazení seznamu)
     ingested_data = IngestedData.objects.all().order_by('-received_at')
     return render(request, 'ingest/list.html', {'ingested_data': ingested_data})
+
 
 
 
