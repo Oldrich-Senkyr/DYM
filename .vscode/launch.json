@@ -1,0 +1,48 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Django 127.0.0.1:9000 ",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}\\dym\\manage.py",
+            "args": [
+                "runserver",
+                "127.0.0.1:9000"
+            ],
+            "django": true,
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}\\dym",
+            "autoStartBrowser": false,
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "Python Debugger: Django 10.20.30.70:8000 ",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}\\dym\\manage.py",
+            "args": [
+                "runserver",
+                "10.20.30.70:8000"
+            ],
+            "django": true,
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}\\dym",
+            "autoStartBrowser": false,
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "Run Command read_entities",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}\\dym\\manage.py",
+            "args": ["read_entities", "27074358", "03476693", "--output", "test_data.csv"],
+            "django": true,
+            "console": "integratedTerminal"
+        },
+    ]
+}
+
+

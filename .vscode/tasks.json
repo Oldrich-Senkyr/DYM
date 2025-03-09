@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start SSH Tunnel",
+            "type": "shell",
+            "command": "bash setup_ssh_tunnel.sh"
+        },
+        {
+            "label": "Run Django Server",
+            "type": "shell",
+            "command": "python manage.py runserver",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["Start SSH Tunnel"]
+        }
+    ]
+}

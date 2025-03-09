@@ -9,6 +9,15 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os
+
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+
+if DEVELOPMENT_MODE:
+    print("Běžím ve vývojovém režimu")
+else:
+    print("Běžím v produkci")
+
 
 from pathlib import Path
 
@@ -23,11 +32,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['10.20.30.70','10.20.30.71', 'localhost', '127.0.0.1']
+
+
+#ALLOWED_HOSTS = []
+if DEVELOPMENT_MODE:
+    DEBUG = True
+    ALLOWED_HOSTS = ['10.20.30.70','10.20.30.71', 'localhost', '127.0.0.1']
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1','194.182.86.168', 'abiz.cz', 'www.abiz.cz']
+
 
 # Povolit jen HTTPS připojení
-SET_HTTPS = False
+if DEVELOPMENT_MODE:
+    SET_HTTPS = False
+else:
+    SET_HTTPS = True
 
 if SET_HTTPS:
     SECURE_SSL_REDIRECT = True  # Přesměrování HTTP → HTTPS
@@ -37,6 +57,8 @@ if SET_HTTPS:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Povolit HTTPS přes reverse proxy
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m'
 
 LOGGING = {
     'version': 1,
@@ -60,9 +82,6 @@ LOGGING = {
         },
     },
 }
-
-
-#ALLOWED_HOSTS = []
 
 
 LOGIN_URL = '/login/'
@@ -94,6 +113,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'agent.AppUser'
 
 MIDDLEWARE = [
+    'dym.middleware.LogHostMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,21 +149,37 @@ WSGI_APPLICATION = 'dym.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dym',
-        'USER': 'dym_admin',
-        'PASSWORD': 'dymadmin',
-        'HOST': 'localhost',  # IP address of your PostgreSQL server
-        'PORT': '5433',  # Default PostgreSQL port
-        #    'OPTIONS': {
-     #       'charset': 'utf8mb4',
-    #    }        
- 
+if DEVELOPMENT_MODE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'dym',
+            'USER': 'dym_admin',
+            'PASSWORD': 'dymadmin',
+            'HOST': 'localhost',  # IP address of your PostgreSQL server
+            'PORT': '5433',  # Default PostgreSQL port
+            #    'OPTIONS': {
+            #       'charset': 'utf8mb4',
+        #    }        
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'dym',
+            'USER': 'dym_admin',
+            'PASSWORD': 'dymadmin',
+            'HOST': 'localhost',  # IP address of your PostgreSQL server
+            'PORT': '5432',  # Default PostgreSQL port
+            #    'OPTIONS': {
+        #       'charset': 'utf8mb4',
+        #    }        
+    
+        }
+    }
+    
+
 
 
 # Password validation
