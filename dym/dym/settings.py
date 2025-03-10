@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+print("Vole")
+print(f"Raw value of DEVELOPMENT_MODE: '{DEVELOPMENT_MODE}'")
 
 if DEVELOPMENT_MODE:
     print("Běžím ve vývojovém režimu")
@@ -244,3 +246,7 @@ if DEBUG:
 
 #Aplikace ingest
 SECRET_INGEST_TOKEN = 'a64a569afc769a89072e0abb21c20d0ea815860708f6436e95897c70793fdc3c'
+
+# Podminky ruznych logu, tohle je log ze souboru middleware.py
+LOG_HOST_MIDDLEWARE_ENABLED = False
+
