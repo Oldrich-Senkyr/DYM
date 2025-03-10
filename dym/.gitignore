@@ -1,14 +1,57 @@
-# Ignorovat adresář virtuálního prostředí
-def_files/
-
-# Ignorovat všechny soubory s příponou .log
-*.log
-
-# Ignorovat soubory s příponou .pyc (Python bytecode)
-*.pyc
-
-# Ignorovat soubor .env (např. pro citlivé informace)
+# Virtuální prostředí
+venv/
 .env
+*.env
 
-# Ignorovat všechny soubory ve složce build/
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Databázové soubory
+db.sqlite3
+*.sqlite3
+*.db
+
+# Soubory migrací
+**/migrations/*.pyc
+**/migrations/__pycache__/
+**/migrations/*.py
+
+# Bytecode a cache soubory
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Statické soubory
+staticfiles/
+static/
+
+# Média
+media/
+
+# Logy a dočasné soubory
+*.log
+logs/
+tmp/
+*.swp  # VIM swap soubory
+
+# Pipenv a Poetry
+Pipfile.lock
+poetry.lock
+
+# Pytest a testovací cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker a deployment
+docker-compose.override.yml
+*.dockerfile
+.DS_Store  # MacOS systémový soubor
+
+# Build složky (např. pro frontendové buildy)
 build/
