@@ -8,9 +8,6 @@ from .models import IngestedData
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
-
-
-
 import logging
 
 logger = logging.getLogger(__name__)
