@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-print("Vole")
 print(f"Raw value of DEVELOPMENT_MODE: '{DEVELOPMENT_MODE}'")
 
 if DEVELOPMENT_MODE:
@@ -62,28 +61,9 @@ if SET_HTTPS:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+
+
+
 
 
 LOGIN_URL = '/login/'
@@ -249,4 +229,27 @@ SECRET_INGEST_TOKEN = 'a64a569afc769a89072e0abb21c20d0ea815860708f6436e95897c707
 
 # Podminky ruznych logu, tohle je log ze souboru middleware.py
 LOG_HOST_MIDDLEWARE_ENABLED = False
+LOGGING_ENABLED = False
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'] if LOGGING_ENABLED else [],
+            'level': 'DEBUG' if LOGGING_ENABLED else 'WARNING',
+            'propagate': True,
+        },
+    },
+}
