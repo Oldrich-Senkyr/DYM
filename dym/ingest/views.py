@@ -6,6 +6,7 @@ from collections import OrderedDict
 from .models import IngestedData
 from django.conf import settings
 import logging
+from django.shortcuts import get_object_or_404, redirect
 
 logger = logging.getLogger(__name__)
 
@@ -49,8 +50,17 @@ def ingest_data(request):
             logger.error(f"An error occurred: {str(e)}")
             return JsonResponse({'error': 'An error occurred', 'details': str(e)}, status=500)
 
+    # GET: Show ingested data, possibly filtered by card_number
+    card_number = request.GET.get('card_number')
     ingested_data = IngestedData.objects.all().order_by('-received_at')
-    return render(request, 'ingest/list.html', {'ingested_data': ingested_data})
+
+    if card_number:
+        ingested_data = ingested_data.filter(data__card_number__icontains=card_number)
+
+    return render(request, 'ingest/list.html', {
+        'ingested_data': ingested_data
+    })
+
 
 def export_data(request):
     data = list(IngestedData.objects.values('id', 'data', 'received_at'))
@@ -64,3 +74,12 @@ def export_data(request):
     response['Content-Disposition'] = 'attachment; filename="ingested_data.json"'
     json.dump(ordered_data, response, indent=4, default=str)
     return response
+
+
+@csrf_exempt
+def delete_data(request, pk):
+    if request.method == 'POST':
+        obj = get_object_or_404(IngestedData, pk=pk)
+        obj.delete()
+        return redirect('ingest:read_data')
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

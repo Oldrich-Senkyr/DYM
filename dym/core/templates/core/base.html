@@ -57,6 +57,8 @@
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Persons" %}</a>
                                 <div class="h-1 bg-white"></div>
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Persons&Companies" %}</a>
+                                <div class="h-1 bg-white"></div>
+                                <a href="{% url 'ingest:read_data' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Readers raw data" %}</a>
                             </div>
                         </div>
                         <a href="{% url 'agent:logout' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Logout" %}</a>

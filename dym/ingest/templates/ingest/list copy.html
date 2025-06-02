@@ -53,13 +53,11 @@
         <!-- Tabulka s přijatými daty -->
         <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam přijatých dat" %}</h2>
         <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
-            
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "ID" %}</th>
                     <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Data" %}</th>
                     <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Přijato" %}</th>
-                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Akce" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,17 +66,14 @@
                     <td class="py-3 px-4 border-b border-gray-200">{{ item.id }}</td>
                     <td class="py-3 px-4 border-b border-gray-200">{{ item.data|safe }}</td>
                     <td class="py-3 px-4 border-b border-gray-200">{{ item.received_at }}</td>
-                    <td class="py-3 px-4 border-b border-gray-200">
-                        <form method="post" action="{% url 'ingest:delete_data' item.id %}" onsubmit="return confirm('{% trans "Opravdu chcete tento záznam smazat?" %}');">
-                            {% csrf_token %}
-                            <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">
-                                {% trans "Smazat" %}
-                            </button>
-                        </form>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="py-3 px-4 text-center text-gray-500">
+                        {% trans "Zatím nejsou žádná data." %}
                     </td>
                 </tr>
                 {% endfor %}
-                        
             </tbody>
         </table>
     </div>
