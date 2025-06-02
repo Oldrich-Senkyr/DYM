@@ -1,15 +1,13 @@
+{% extends 'core/base.html' %}
+{% load static %}
 {% load i18n %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% trans "Ingest Data" %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 p-6">
+
+{% block title %}{% trans "Raw Data" %}{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 p-6">
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">{% trans "Testovací stránka pro ingest dat" %}</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center">{% trans "Raw JSON data" %}</h1>
 
         <!-- Formulář pro zadání JSON dat -->
         <form method="post" id="ingestForm" class="bg-white shadow-md rounded-lg p-6 mb-8">
@@ -24,36 +22,30 @@
             </button>
         </form>
 
-
-      <!-- Filtrovací formulář podle čísla karty -->
+        <!-- Filtrovací formulář podle čísla karty -->
         <form method="get" class="mb-6">
             <label for="card_number" class="block text-lg font-medium text-gray-700 mb-2">
-            {% trans "Filtrovat podle čísla karty:" %}
+                {% trans "Filtrovat podle čísla karty:" %}
             </label>
             <div class="flex gap-2">
-            <input type="text" name="card_number" id="card_number"
-                    value="{{ request.GET.card_number }}"
-                    placeholder="{% trans 'Např.: 475F210000000000' %}"
-                    class="flex-grow border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            <button type="submit"
-                    class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600">
-                {% trans "Filtrovat" %}
-            </button>
-            <a href="{% url 'ingest:read_data' %}"
-                class="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400">
-                {% trans "Zrušit" %}
-            </a>
+                <input type="text" name="card_number" id="card_number"
+                       value="{{ request.GET.card_number }}"
+                       placeholder="{% trans 'Např.: 475F210000000000' %}"
+                       class="flex-grow border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <button type="submit"
+                        class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600">
+                    {% trans "Filtrovat" %}
+                </button>
+                <a href="{% url 'ingest:read_data' %}"
+                   class="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400">
+                    {% trans "Zrušit" %}
+                </a>
             </div>
         </form>
-  
-
-
-
 
         <!-- Tabulka s přijatými daty -->
         <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam přijatých dat" %}</h2>
         <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
-            
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
                     <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "ID" %}</th>
@@ -77,10 +69,13 @@
                         </form>
                     </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="py-4 px-4 text-center text-gray-500">{% trans "Žádná data k zobrazení." %}</td>
+                </tr>
                 {% endfor %}
-                        
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
