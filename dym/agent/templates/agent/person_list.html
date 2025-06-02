@@ -1,0 +1,69 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Person List" %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">{% trans "Seznam osob" %}</h1>
+
+        <!-- Filtrovací formulář podle Unique ID -->
+        <form method="get" class="mb-6">
+            <label for="unique_id" class="block text-lg font-medium text-gray-700 mb-2">
+                {% trans "Filtrovat podle ID osoby:" %}
+            </label>
+            <div class="flex gap-2">
+                <input type="text" name="unique_id" id="unique_id"
+                       value="{{ request.GET.unique_id }}"
+                       placeholder="{% trans 'Např.: E4' %}"
+                       class="flex-grow border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <button type="submit"
+                        class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600">
+                    {% trans "Filtrovat" %}
+                </button>
+                <a href="{% url 'person:list' %}"
+                   class="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400">
+                    {% trans "Zrušit" %}
+                </a>
+            </div>
+        </form>
+
+        <!-- Tabulka s osobami -->
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam zaregistrovaných osob" %}</h2>
+        <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "ID" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Alias" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Jméno" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Příjmení" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Role" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Titul před" %}</th>
+                    <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Titul za" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr class="hover:bg-gray-50">
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.unique_id }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.display_name }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.first_name }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.last_name }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.get_role_display }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.title_before }}</td>
+                    <td class="py-3 px-4 border-b border-gray-200">{{ person.title_after }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="py-4 px-4 text-center text-gray-500">{% trans "Žádné záznamy nenalezeny." %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
