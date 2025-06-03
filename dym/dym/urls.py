@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     path('agent/', include('agent.urls')),
     path('entities/', include('entities.urls')),
     path('ingest/', include('ingest.urls')),
+    path('entrix/', include('entrix.urls')),
   
     # Add other language-specific URLs here as needed
 )

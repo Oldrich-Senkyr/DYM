@@ -88,7 +88,8 @@ INSTALLED_APPS = [
     'entities',
     'integral',
     'ingest',
-     # ... ostatní aplikace
+    'entrix',          
+    # ... ostatní aplikace
     'widget_tweaks',
 ]
 
@@ -216,7 +217,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # SNK settings.py
-CURRENT_COMPANY = "dym"  # nebo "veros"
+
+CURRENT_COMPANY = "dym"
+CURRENT_COMPANY = "veros"
 
 if DEBUG:
     INSTALLED_APPS += ['debug_toolbar']
