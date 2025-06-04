@@ -17,14 +17,20 @@ class PersonForm(forms.ModelForm):
             'title_after': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
         }
 
-    def clean_unique_id(self):
-        unique_id = self.cleaned_data['unique_id']
-        if Person.objects.filter(unique_id__iexact=unique_id).exists():
-            raise forms.ValidationError("Toto ID osoby již existuje.")
-        return unique_id
+        def clean_unique_id(self):
+            unique_id = self.cleaned_data['unique_id']
+            qs = Person.objects.filter(unique_id__iexact=unique_id)
+            if self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            if qs.exists():
+                raise forms.ValidationError("Toto ID osoby již existuje.")
+            return unique_id
 
-    def clean_display_name(self):
-        display_name = self.cleaned_data['display_name']
-        if Person.objects.filter(display_name__iexact=display_name).exists():
-            raise forms.ValidationError("Zobrazované jméno už existuje.")
-        return display_name
+        def clean_display_name(self):
+            display_name = self.cleaned_data['display_name']
+            qs = Person.objects.filter(display_name__iexact=display_name)
+            if self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            if qs.exists():
+                raise forms.ValidationError("Zobrazované jméno už existuje.")
+            return display_name

@@ -111,7 +111,7 @@
         </div>
     </form>
 
-    <!-- Tabulka osob -->
+   <!-- Tabulka osob -->
     <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam zaregistrovaných osob" %}</h2>
     <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
         <thead class="bg-gray-100 text-gray-700">
@@ -123,6 +123,7 @@
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Role" %}</th>
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Titul před" %}</th>
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Titul za" %}</th>
+                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Akce" %}</th> <!-- nový sloupec -->
             </tr>
         </thead>
         <tbody>
@@ -135,13 +136,25 @@
                 <td class="py-3 px-4 border-b border-gray-200">{{ person.get_role_display }}</td>
                 <td class="py-3 px-4 border-b border-gray-200">{{ person.title_before }}</td>
                 <td class="py-3 px-4 border-b border-gray-200">{{ person.title_after }}</td>
+                <td class="py-3 px-4 border-b border-gray-200 flex gap-2">
+                    <a href="{% url 'entrix:person_edit' person.id %}"
+                    class="text-blue-600 hover:text-blue-800 font-semibold">{% trans "Upravit" %}</a>
+                    <form method="post" action="{% url 'entrix:person_delete' person.id %}" onsubmit="return confirm('{% trans "Opravdu chcete záznam smazat?" %}');">
+                        {% csrf_token %}
+                        <button type="submit"
+                                class="text-red-600 hover:text-red-800 font-semibold">
+                            {% trans "Smazat" %}
+                        </button>
+                    </form>
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="7" class="py-4 px-4 text-center text-gray-500">{% trans "Žádné záznamy nenalezeny." %}</td>
+                <td colspan="8" class="py-4 px-4 text-center text-gray-500">{% trans "Žádné záznamy nenalezeny." %}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
 </div>
 {% endblock %}

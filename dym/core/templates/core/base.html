@@ -82,8 +82,6 @@
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Filtered Events" %}</a>
                                 <div class="h-1 bg-white"></div>
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Upcoming Events" %}</a>
-                                <div class="h-1 bg-white"></div>
-                                <a href="{% url 'ingest:read_data' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Readers raw data" %}</a>
                             </div>
                         </div>
                         <!-- Dropdown Menu Reports -->    
@@ -92,9 +90,11 @@
                             <div id="dropdownMenu_1" class="absolute hidden bg-blue-200 shadow-md rounded-lg mt-2 space-y-2">
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-t-lg">{% trans "Hierarchy" %}</a>
                                 <div class="h-1 bg-white"></div>
-                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Persons" %}</a>
+                                <a href="{% url 'entrix:persons_list' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Persons" %}</a>
                                 <div class="h-1 bg-white"></div>
                                 <a href="" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Persons&Companies" %}</a>
+                                <div class="h-1 bg-white"></div>
+                                <a href="{% url 'ingest:read_data' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Readers raw data" %}</a>
                             </div>
                         </div>
                         <a href="{% url 'agent:logout' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">{% trans "Logout" %}</a>

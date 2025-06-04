@@ -5,5 +5,7 @@ app_name = 'entrix'
 
 
 urlpatterns = [
-    path("persons-list/", views.persons_list, name="persons_list"),
+    path("persons/", views.persons_list, name="persons_list"),
+    path('persons/<int:pk>/edit/', views.edit_person, name='person_edit'),
+    path('persons/<int:pk>/delete/', views.delete_person, name='person_delete'),
 ]

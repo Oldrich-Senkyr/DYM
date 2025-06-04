@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% if is_editing %}{% trans "Upravit osobu" %}{% else %}{% trans "Nová osoba" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-6 bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4">
+        {% if is_editing %}{% trans "Upravit osobu" %}{% else %}{% trans "Přidat osobu" %}{% endif %}
+    </h1>
+    <form method="post" class="grid gap-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            {% trans "Uložit" %}
+        </button>
+        <a href="{% url 'entrix:persons_list' %}" class="ml-2 text-gray-600 hover:underline">
+            {% trans "Zpět na seznam" %}
+        </a>
+    </form>
+</div>
+{% endblock %}
