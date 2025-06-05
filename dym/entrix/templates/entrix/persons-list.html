@@ -111,6 +111,32 @@
         </div>
     </form>
 
+    <!-- Sekce: Import a Export CSV -->
+    <div class="flex flex-col md:flex-row gap-4 mb-8">
+
+        <!-- Export tlačítko -->
+        <a href="{% url 'entrix:person_export_csv' %}"
+        class="bg-yellow-500 text-white font-semibold py-2 px-4 rounded hover:bg-yellow-600 text-center">
+            {% trans "Exportovat CSV" %}
+        </a>
+
+        <!-- Formulář pro import CSV -->
+        <form method="post" enctype="multipart/form-data" action="{% url 'entrix:person_import_csv' %}"
+            class="flex flex-col md:flex-row gap-2 items-start md:items-center">
+            {% csrf_token %}
+            <input type="file" name="csv_file"
+                accept=".csv"
+                required
+                class="border border-gray-300 rounded p-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+            <button type="submit"
+                    class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                {% trans "Importovat CSV" %}
+            </button>
+        </form>
+
+    </div>
+
+
    <!-- Tabulka osob -->
     <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam zaregistrovaných osob" %}</h2>
     <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
