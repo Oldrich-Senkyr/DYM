@@ -8,24 +8,35 @@ import csv
 
 
 
-def persons_list(request):
-    form = PersonForm()
-    persons = Person.objects.all()
 
-    if request.method == "POST":
-        form = PersonForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('entrix:persons_list')
+
+def persons_list(request):
+    persons = Person.objects.all()
 
     unique_id = request.GET.get('unique_id')
     if unique_id:
         persons = persons.filter(unique_id__icontains=unique_id)
 
     return render(request, 'entrix/persons-list.html', {
-        'form': form,
         'persons': persons,
     })
+
+
+
+
+def person_add(request):
+    if request.method == "POST":
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('entrix:persons_list')
+    else:
+        form = PersonForm()
+
+    return render(request, 'entrix/person-add.html', {
+        'form': form,
+    })
+
 
 
 def edit_person(request, pk):
@@ -67,7 +78,7 @@ def person_export_csv(request):
     response.write('\ufeff')  # UTF-8 BOM
     writer = csv.writer(response)
 
-    writer.writerow(['unique_id', 'display_name', 'first_name', 'last_name', 'role', 'title_before', 'title_after'])
+    writer.writerow(['unique_id', 'display_name', 'first_name', 'last_name', 'role', 'title_before', 'title_after','email','phone'])
     for p in Person.objects.all():
         writer.writerow([
             p.unique_id,
@@ -76,7 +87,9 @@ def person_export_csv(request):
             p.last_name,
             p.role,
             p.title_before,
-            p.title_after
+            p.title_after,
+            p.email,
+            p.phone,
         ])
 
     return response
@@ -107,6 +120,9 @@ def person_import_csv(request):
                         'role': row['role'],
                         'title_before': row['title_before'],
                         'title_after': row['title_after'],
+                        'email': row['email'],
+                        'phone': row['phone'],
+                        
                     }
                 )
                 success_count += 1

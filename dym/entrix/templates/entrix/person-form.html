@@ -12,7 +12,16 @@
     </h1>
     <form method="post" class="grid gap-4">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <div class="grid grid-cols-2 gap-4">
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+        </div>
+
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             {% trans "Uložit" %}
         </button>

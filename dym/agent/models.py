@@ -7,7 +7,9 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from .managers import AppUserManager
 
-class Person(models.Model): #Person ----------------------------------------------------------------------------------------------------------
+from django.core.validators import RegexValidator, EmailValidator
+
+class Person(models.Model):  # Person ----------------------------------------------------------------------------------------------------------
     class Meta:
         verbose_name = _("Person")
         verbose_name_plural = _("Persons")
@@ -41,7 +43,6 @@ class Person(models.Model): #Person --------------------------------------------
         (6, _('Other')),
     ]
 
-    
     unique_id = models.CharField(max_length=20, unique=True, verbose_name=_("Unique ID"), help_text=_("Enter a unique identifier."))
     display_name = models.CharField(max_length=25, default="Alias", verbose_name=_("Alias"), blank=True, null=True)
     first_name = models.CharField(max_length=25, default="Nomen", verbose_name=_("First Name"))
@@ -49,10 +50,33 @@ class Person(models.Model): #Person --------------------------------------------
     role = models.IntegerField(choices=ROLE_CHOICES, default=6, verbose_name=_("Role"))
     title_before = models.CharField(max_length=10, choices=TITLE_BEFORE_CHOICES, blank=True, verbose_name=_("Title Before"))
     title_after = models.CharField(max_length=10, choices=TITLE_AFTER_CHOICES, blank=True, verbose_name=_("Title After"))
- 
-    
+
+    email = models.EmailField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name=_("Email"),
+        validators=[EmailValidator()],
+        help_text=_("Enter a valid email address.")
+    )
+
+    phone = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        verbose_name=_("Phone"),
+        validators=[
+            RegexValidator(
+                regex=r'^\+?\d{9,15}$',
+                message=_("Enter a valid phone number (e.g. +420123456789).")
+            )
+        ],
+        help_text=_("Phone number in international format, e.g. +420123456789.")
+    )
+
     def __str__(self):
         return f"{self.unique_id} {self.last_name} {self.first_name} ({self.get_role_display()})"
+
 #---------------------------------------------------------------------------------------------------------------------------------------------
 
 

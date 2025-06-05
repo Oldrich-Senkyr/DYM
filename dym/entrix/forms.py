@@ -6,7 +6,7 @@ from agent.models import Person
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ['unique_id', 'display_name', 'first_name', 'last_name', 'role', 'title_before', 'title_after']
+        fields = ['unique_id', 'display_name', 'first_name', 'last_name', 'role', 'title_before', 'title_after','email','phone']
         widgets = {
             'unique_id': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'display_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
@@ -15,6 +15,9 @@ class PersonForm(forms.ModelForm):
             'role': forms.Select(attrs={'class': 'w-full p-2 border rounded'}),
             'title_before': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'title_after': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
+            'email': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
+            'phone': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
+        
         }
 
         def clean_unique_id(self):
