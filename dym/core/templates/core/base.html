@@ -88,11 +88,9 @@
                         <div class="relative">
                             <button class="px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700" data-dropdown="dropdownMenu_1">{% trans "Administration" %}</button>
                             <div id="dropdownMenu_1" class="absolute hidden bg-blue-200 shadow-md rounded-lg mt-2 space-y-2">
-                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-t-lg">{% trans "Hierarchy" %}</a>
-                                <div class="h-1 bg-white"></div>
                                 <a href="{% url 'entrix:persons_list' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Persons" %}</a>
                                 <div class="h-1 bg-white"></div>
-                                <a href="" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Persons&Companies" %}</a>
+                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-t-lg">{% trans "Cards" %}</a>
                                 <div class="h-1 bg-white"></div>
                                 <a href="{% url 'ingest:read_data' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Readers raw data" %}</a>
                             </div>

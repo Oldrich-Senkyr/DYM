@@ -88,7 +88,8 @@ INSTALLED_APPS = [
     'entities',
     'integral',
     'ingest',
-    'entrix',          
+    'entrix',
+    'rfid',          
     # ... ostatní aplikace
     'widget_tweaks',
 ]

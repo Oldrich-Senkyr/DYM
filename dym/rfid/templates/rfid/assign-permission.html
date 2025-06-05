@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="max-w-xl mx-auto mt-6">
+    <h1 class="text-2xl font-semibold mb-4">{% trans "Assign Permissions to Card" %}: {{ card.card_id }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            {% trans "Assign" %}
+        </button>
+    </form>
+
+    <h2 class="mt-6 text-lg font-medium">{% trans "Current Permissions" %}</h2>
+    <ul class="list-disc list-inside">
+        {% for perm in card.permissions.all %}
+            <li>{{ perm.permission.name }}</li>
+        {% empty %}
+            <li class="text-gray-500">{% trans "No permissions assigned." %}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
