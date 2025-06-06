@@ -12,6 +12,7 @@ from django.utils.translation import gettext as _
 import csv
 import io
 from io import TextIOWrapper
+from django.utils.timezone import now
 
 logger = logging.getLogger(__name__)
 
@@ -26,14 +27,13 @@ def ingest_data(request):
                 try:
                     decoded_file = TextIOWrapper(csv_file.file, encoding='utf-8')
                     reader = csv.DictReader(decoded_file)
+
+
+
+                    
                     for row in reader:
-                        record = {
-                            'Datum': row.get('date', '').strip(),
-                            'Hodina': row.get('time', '').strip(),
-                            'CisloKarty': row.get('card_number', '').strip().strip("'"),
-                            'SenderName': row.get('reader_id', '').strip(),
-                            'TypUdalosti': row.get('entry_type', '').strip().strip("'"),
-                        }
+                        # Zachovat původní názvy sloupců
+                        record = {k: v.strip().strip("'") for k, v in row.items()}
                         IngestedData.objects.create(data=json.dumps(record), received_at=now())
                     messages.success(request, _("Data byla úspěšně importována."))
                 except Exception as e:
