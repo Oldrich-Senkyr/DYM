@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% if form.instance.pk %}
+    {% trans "Upravit RFID kartu" %}
+  {% else %}
+    {% trans "Nová RFID karta" %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-6 bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4">
+        {% if form.instance.pk %}
+            {% trans "Upravit RFID kartu" %}
+        {% else %}
+            {% trans "Přidat RFID kartu" %}
+        {% endif %}
+    </h1>
+
+    <form method="post" class="grid gap-4">
+        {% csrf_token %}
+
+        <div class="grid grid-cols-2 gap-4">
+            {% for field in form %}
+                <div class="{% if field.name == 'person' %}col-span-2{% endif %} bg-gray-100 p-3 rounded border border-gray-300">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ field.errors|striptags }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="flex items-center mt-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                {% trans "Uložit" %}
+            </button>
+            <a href="{% url 'rfid:card_list' %}" class="ml-4 text-gray-600 hover:underline">
+                {% trans "Zpět na seznam karet" %}
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

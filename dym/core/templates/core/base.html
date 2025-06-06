@@ -13,8 +13,19 @@
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">   
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>{% block title %}{% trans "My Site" %}{% endblock %}</title>
-    {% block extra_head %}{% endblock %}
+
+  
+   <title>
+    {% block title %}
+        {% if IS_VEROS %}
+            {% trans "Veros Site" %}
+        {% elif IS_DYM %}
+            {% trans "Dym Site" %}
+        {% else %}
+            {% trans "My Site" %}
+        {% endif %}
+    {% endblock %}
+    </title>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
@@ -22,11 +33,11 @@
     <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-400">
         <div class="container mx-auto flex justify-between items-center">
             {% if IS_DYM %}
-                <a href="/" class="text-gray-500 text-3xl font-bold">{% trans "Ignis home" %}</a>
+                <a href="/index" class="text-gray-500 text-3xl font-bold">{% trans "Ignis home" %}</a>
             {% elif IS_VEROS %}
-                <a href="/" class="text-gray-500 text-3xl font-bold">{% trans "Veros home" %}</a>
+                <a href="{% url 'core:index' %}" class="text-gray-500 text-3xl font-bold">{% trans "Veros home" %}</a>
             {% else %}
-                <a href="/" class="text-gray-500 text-3xl font-bold">{% trans "Nowhere home" %}</a>
+                <a href="/index" class="text-gray-500 text-3xl font-bold">{% trans "Nowhere home" %}</a>
             {% endif %}
             <div class="flex items-center space-x-4">
                 <a href="{% url 'core:index' %}" class="text-white">{% trans "Home" %}</a>
@@ -73,7 +84,7 @@
                         <a href="#" class="px-6 py-3 text-lg font-semibold bg-green-500 text-white rounded-xl hover:bg-green-700">{% trans "Work Days" %}</a>
                         <a href="#" class="px-6 py-3 text-lg font-semibold bg-purple-500 text-white rounded-xl hover:bg-purple-700">{% trans "Projects" %}</a>
 
-                        <!-- Dropdown Menu Administration -->
+                        <!-- Dropdown Menu Reports -->
                         <div class="relative">
                             <button class="px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700" data-dropdown="dropdownMenu">{% trans "Reports" %}</button>
                             <div id="dropdownMenu" class="absolute hidden bg-blue-200 shadow-md rounded-lg mt-2 space-y-2">
@@ -84,13 +95,13 @@
                                 <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Upcoming Events" %}</a>
                             </div>
                         </div>
-                        <!-- Dropdown Menu Reports -->    
+                        <!-- Dropdown Menu Administration -->    
                         <div class="relative">
                             <button class="px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700" data-dropdown="dropdownMenu_1">{% trans "Administration" %}</button>
                             <div id="dropdownMenu_1" class="absolute hidden bg-blue-200 shadow-md rounded-lg mt-2 space-y-2">
                                 <a href="{% url 'entrix:persons_list' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white">{% trans "Persons" %}</a>
                                 <div class="h-1 bg-white"></div>
-                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-t-lg">{% trans "Cards" %}</a>
+                                <a href="{% url 'rfid:card_list' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-t-lg">{% trans "Cards" %}</a>
                                 <div class="h-1 bg-white"></div>
                                 <a href="{% url 'ingest:read_data' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-blue-700 hover:text-white rounded-b-lg">{% trans "Readers raw data" %}</a>
                             </div>

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'core/base.html')
+    return render(request, 'core/index.html')
 
 #Index page   ........................................................................................................
 #Language switching  -------------------------------------------------------------------------------------------------
