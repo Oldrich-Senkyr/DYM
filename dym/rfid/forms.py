@@ -18,7 +18,7 @@ class CardPermissionForm(forms.ModelForm):
         permission = cleaned_data.get('permission')
         if self.card and permission:
             if CardPermission.objects.filter(card=self.card, permission=permission).exists():
-                raise forms.ValidationError(_("Toto oprávnění je již přiřazeno."))
+                raise forms.ValidationError(_("This permission is already assigned."))
         return cleaned_data
 
     def save(self, commit=True):

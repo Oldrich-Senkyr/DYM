@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 20:08+0100\n"
+"POT-Creation-Date: 2025-06-06 11:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
 #: .\agent\admin.py:21
 msgid "Personal info"
 msgstr "Osobní informace"
@@ -66,175 +67,199 @@ msgstr "Superuživatel musí mít is_staff=True."
 msgid "Superuser must have is_superuser=True"
 msgstr "Superuživatel musí mít is_superuser=True"
 
-#: .\agent\models.py:12
+#: .\agent\models.py:14
 msgid "Person"
 msgstr "Osoba"
 
-#: .\agent\models.py:13
+#: .\agent\models.py:15
 msgid "Persons"
 msgstr "Osoby"
 
-#: .\agent\models.py:16
+#: .\agent\models.py:18
 msgid "Bc."
 msgstr ""
 
-#: .\agent\models.py:17
+#: .\agent\models.py:19
 msgid "BcA."
 msgstr ""
 
-#: .\agent\models.py:18
+#: .\agent\models.py:20
 msgid "RNDr."
 msgstr ""
 
-#: .\agent\models.py:19
+#: .\agent\models.py:21
 msgid "MUDr."
 msgstr ""
 
-#: .\agent\models.py:20
+#: .\agent\models.py:22
 msgid "JUDr."
 msgstr ""
 
-#: .\agent\models.py:21
+#: .\agent\models.py:23
 msgid "PhDr."
 msgstr ""
 
-#: .\agent\models.py:22
+#: .\agent\models.py:24
 msgid "Ing."
 msgstr ""
 
-#: .\agent\models.py:23
+#: .\agent\models.py:25
 msgid "Mgr."
 msgstr ""
 
-#: .\agent\models.py:27
+#: .\agent\models.py:29
 msgid "DiS."
 msgstr ""
 
-#: .\agent\models.py:28
+#: .\agent\models.py:30
 msgid "MBA"
 msgstr ""
 
-#: .\agent\models.py:29
+#: .\agent\models.py:31
 msgid "LL.M."
 msgstr ""
 
-#: .\agent\models.py:30
+#: .\agent\models.py:32
 msgid "CSc."
 msgstr ""
 
-#: .\agent\models.py:31
+#: .\agent\models.py:33
 msgid "DrSc."
 msgstr ""
 
-#: .\agent\models.py:32
+#: .\agent\models.py:34
 msgid "Ph.D."
 msgstr ""
 
-#: .\agent\models.py:36 .\agent\models.py:73
+#: .\agent\models.py:38 .\agent\models.py:97
 msgid "Employee"
 msgstr "Zaměstnanec"
 
-#: .\agent\models.py:37
+#: .\agent\models.py:39
 msgid "Guest"
 msgstr "Host"
 
-#: .\agent\models.py:38
+#: .\agent\models.py:40
 msgid "Contractor"
 msgstr "Smluvní partner"
 
-#: .\agent\models.py:39
+#: .\agent\models.py:41
 msgid "Supplier"
 msgstr "Dodavatel"
 
-#: .\agent\models.py:40
+#: .\agent\models.py:42
 msgid "Customer"
 msgstr "Zákazník"
 
-#: .\agent\models.py:41
+#: .\agent\models.py:43
 msgid "Other"
 msgstr "Ostatní"
 
-#: .\agent\models.py:45
+#: .\agent\models.py:46
 msgid "Unique ID"
 msgstr "Jedinečné ID"
 
-#: .\agent\models.py:45
+#: .\agent\models.py:46
 msgid "Enter a unique identifier."
 msgstr "Zadejte jedinečný identifikátor."
 
-#: .\agent\models.py:46
+#: .\agent\models.py:47 .\agent\templates\agent\person_list.html:41
 msgid "Alias"
 msgstr "Alias"
 
-#: .\agent\models.py:47 .\agent\models.py:76
+#: .\agent\models.py:48 .\agent\models.py:100
 msgid "First Name"
 msgstr "Jméno"
 
-#: .\agent\models.py:48 .\agent\models.py:77
+#: .\agent\models.py:49 .\agent\models.py:101
 msgid "Last Name"
 msgstr "Příjmení"
 
-#: .\agent\models.py:49
+#: .\agent\models.py:50 .\agent\templates\agent\person_list.html:44
 msgid "Role"
 msgstr ""
 
-#: .\agent\models.py:50
+#: .\agent\models.py:51
 msgid "Title Before"
 msgstr "Titul před"
 
-#: .\agent\models.py:51
+#: .\agent\models.py:52
 msgid "Title After"
 msgstr "Titul po"
 
-#: .\agent\models.py:70
+#: .\agent\models.py:58
+#, fuzzy
+#| msgid "Email:"
+msgid "Email"
+msgstr "E-mail:"
+
+#: .\agent\models.py:60
+#, fuzzy
+#| msgid "Your email address"
+msgid "Enter a valid email address."
+msgstr "Vaše e-mailová adresa"
+
+#: .\agent\models.py:67
+msgid "Phone"
+msgstr ""
+
+#: .\agent\models.py:71
+msgid "Enter a valid phone number (e.g. +420123456789)."
+msgstr ""
+
+#: .\agent\models.py:74
+msgid "Phone number in international format, e.g. +420123456789."
+msgstr ""
+
+#: .\agent\models.py:94
 msgid "Manager"
 msgstr "Manažer"
 
-#: .\agent\models.py:71
+#: .\agent\models.py:95
 msgid "Division Manager"
 msgstr "Vedoucí divize"
 
-#: .\agent\models.py:72
+#: .\agent\models.py:96
 msgid "Group Leader"
 msgstr "Vedoucí skupiny"
 
-#: .\agent\models.py:78
+#: .\agent\models.py:102
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
-#: .\agent\models.py:102
+#: .\agent\models.py:126
 msgid "Leader"
 msgstr "Vedouc9"
 
-#: .\agent\models.py:131
+#: .\agent\models.py:155
 msgid "Number of members"
 msgstr "Počet členů"
 
-#: .\agent\models.py:143
+#: .\agent\models.py:167
 msgid "Person reference"
 msgstr "Odkaz na osobu"
 
-#: .\agent\models.py:144
+#: .\agent\models.py:168
 msgid "Company reference"
 msgstr "Odkaz na společnost"
 
-#: .\agent\models.py:150
+#: .\agent\models.py:174
 msgid "Person-Company Relationship"
 msgstr "Vztah mezi osobou a společností"
 
-#: .\agent\models.py:151
+#: .\agent\models.py:175
 msgid "Person-Company Relationships"
 msgstr "Vztahy mezi osobami a společnostmi"
 
-#: .\agent\models.py:174
+#: .\agent\models.py:198
 msgid "Role of the person in the team"
 msgstr "Role osoby v týmu"
 
-#: .\agent\models.py:179
+#: .\agent\models.py:203
 msgid "Employee Assignment to Team"
 msgstr "Zařazení zaměstnance do týmu"
 
-#: .\agent\models.py:180
+#: .\agent\models.py:204
 msgid "Employee Assignments to Teams"
 msgstr "Přiřazení zaměstnanců k týmům"
 
@@ -253,6 +278,60 @@ msgstr "Heslo:"
 #: .\agent\templates\agent\login.html:33 .\agent\templates\agent\signup.html:43
 msgid "Submit"
 msgstr "Odeslat"
+
+#: .\agent\templates\agent\person_list.html:7
+#, fuzzy
+#| msgid "Persons"
+msgid "Person List"
+msgstr "Osoby"
+
+#: .\agent\templates\agent\person_list.html:12
+msgid "Seznam osob"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:17
+msgid "Filtrovat podle ID osoby:"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:22
+msgid "Např.: E4"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:26
+msgid "Filtrovat"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:30
+msgid "Zrušit"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:36
+msgid "Seznam zaregistrovaných osob"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:40
+msgid "ID"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:42
+msgid "Jméno"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:43
+msgid "Příjmení"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:45
+msgid "Titul před"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:46
+msgid "Titul za"
+msgstr ""
+
+#: .\agent\templates\agent\person_list.html:62
+msgid "Žádné záznamy nenalezeny."
+msgstr ""
 
 #: .\agent\templates\agent\signup.html:3 .\agent\templates\agent\signup.html:8
 msgid "Sign up"

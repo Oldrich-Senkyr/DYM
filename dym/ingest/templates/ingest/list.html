@@ -22,6 +22,22 @@
             </button>
         </form>
 
+        <!-- Formulář pro nahrání CSV -->
+        <form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6 mb-8">
+            {% csrf_token %}
+            <label for="csv_file" class="block text-lg font-medium text-gray-700 mb-2">
+                {% trans "Import from CSV file:" %}
+            </label>
+            <input type="file" name="csv_file" id="csv_file"
+                accept=".csv"
+                class="w-full border border-gray-300 rounded-lg p-3 mb-4">
+            <button type="submit" name="import_csv"
+                    class="bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-600">
+                {% trans "Import from CSV file" %}
+            </button>
+        </form>
+
+
         <!-- Filtrovací formulář podle čísla karty -->
         <form method="get" class="mb-6">
             <label for="card_number" class="block text-lg font-medium text-gray-700 mb-2">

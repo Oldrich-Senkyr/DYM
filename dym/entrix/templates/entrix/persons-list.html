@@ -7,27 +7,27 @@
 {% block content %}
 <div class="max-w-6xl mx-auto py-6">
 
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">{% trans "Seznam osob" %}</h1>
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">{% trans "Persons list" %}</h1>
 
    
 
     <!-- Filtrovací formulář -->
     <form method="get" class="mb-6">
         <label for="unique_id" class="block text-lg font-medium text-gray-700 mb-2">
-            {% trans "Filtrovat podle ID osoby:" %}
+            {% trans "Filter by person ID:" %}
         </label>
         <div class="flex gap-2">
             <input type="text" name="unique_id" id="unique_id"
                    value="{{ request.GET.unique_id }}"
-                   placeholder="{% trans 'Např.: E4' %}"
+                   placeholder="{% trans 'E.g.: E4' %}"
                    class="flex-grow border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             <button type="submit"
                     class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600">
-                {% trans "Filtrovat" %}
+                {% trans "Filter" %}
             </button>
             <a href="{% url 'entrix:persons_list' %}"
                class="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400">
-                {% trans "Zrušit" %}
+                {% trans "Cancel" %}
             </a>
         </div>
     </form>
@@ -38,14 +38,14 @@
      <!-- Přidat novou osobu -->
     <a href="{% url 'entrix:person_add' %}"
        class="bg-purple-600 text-white font-semibold py-2 px-4 rounded hover:bg-purple-700 text-center">
-        {% trans "Přidat novou osobu" %}
+        {% trans "Add new person" %}
     </a>
 
     
     <!-- Export tlačítko -->
     <a href="{% url 'entrix:person_export_csv' %}"
        class="bg-yellow-500 text-white font-semibold py-2 px-4 rounded hover:bg-yellow-600 text-center">
-        {% trans "Exportovat CSV" %}
+        {% trans "Export to CSV file" %}
     </a>
 
     <!-- Import formulář -->
@@ -54,13 +54,13 @@
         {% csrf_token %}
         <div class="flex items-center gap-2">
             <label class="bg-gray-200 text-gray-700 px-3 py-2 rounded cursor-pointer hover:bg-gray-300">
-                {% trans "Vybrat soubor" %}
+                {% trans "Select file" %}
                 <input id="csvFileInput" type="file" name="csv_file" accept=".csv" required class="hidden">
             </label>
             <span id="selectedFileName" class="text-sm text-gray-700 italic"></span>
             <button type="submit"
                 class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                {% trans "Importovat CSV" %}
+                {% trans "Import from CSV file" %}
             </button>
         </div>
     </form>
@@ -76,17 +76,17 @@
 </div>
 
     <!-- Tabulka osob -->
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Seznam zaregistrovaných osob" %}</h2>
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "List of persons" %}</h2>
     <table class="w-full bg-white shadow-md rounded-lg overflow-hidden border-collapse border border-gray-200">
         <thead class="bg-gray-100 text-gray-700">
             <tr>
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "ID" %}</th>
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Alias" %}</th>
-                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Titul před" %}</th>
-                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Jméno" %}</th>
-                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Příjmení" %}</th>
+                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Title before" %}</th>
+                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "First name" %}</th>
+                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Last name" %}</th>
                 <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Role" %}</th>
-                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Akce" %}</th>
+                <th class="py-3 px-4 text-left border-b border-gray-200">{% trans "Action" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -99,16 +99,16 @@
                 <td class="py-3 px-4 border-b border-gray-200">{{ person.last_name }}</td>
                 <td class="py-3 px-4 border-b border-gray-200">{{ person.get_role_display }}</td>
                 <td class="py-3 px-4 border-b border-gray-200 flex gap-2">
-                    <a href="{% url 'entrix:person_edit' person.id %}" class="text-blue-600 hover:text-blue-800 font-semibold">{% trans "Upravit" %}</a>
-                    <form method="post" action="{% url 'entrix:person_delete' person.id %}" onsubmit="return confirm('{% trans "Opravdu chcete záznam smazat?" %}');">
+                    <a href="{% url 'entrix:person_edit' person.id %}" class="text-blue-600 hover:text-blue-800 font-semibold">{% trans "Edit" %}</a>
+                    <form method="post" action="{% url 'entrix:person_delete' person.id %}" onsubmit="return confirm('{% trans "Are you sure you want to delete the record?" %}');">
                         {% csrf_token %}
-                        <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">{% trans "Smazat" %}</button>
+                        <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">{% trans "Delete" %}</button>
                     </form>
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="7" class="py-4 px-4 text-center text-gray-500">{% trans "Žádné záznamy nenalezeny." %}</td>
+                <td colspan="7" class="py-4 px-4 text-center text-gray-500">{% trans "No records found." %}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,0 +1,183 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-06 11:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\rfid\forms.py:21
+msgid "This permission is already assigned."
+msgstr ""
+
+#: .\rfid\forms.py:42 .\rfid\models.py:13
+#: .\rfid\templates\rfid\card-list.html:15
+msgid "Card ID"
+msgstr ""
+
+#: .\rfid\forms.py:43
+msgid "Owner"
+msgstr ""
+
+#: .\rfid\forms.py:44 .\rfid\models.py:15
+#: .\rfid\templates\rfid\card-list.html:17
+msgid "Valid From"
+msgstr ""
+
+#: .\rfid\forms.py:45 .\rfid\models.py:16
+#: .\rfid\templates\rfid\card-list.html:18
+msgid "Valid To"
+msgstr ""
+
+#: .\rfid\forms.py:48
+msgid "Enter the RFID card code."
+msgstr ""
+
+#: .\rfid\models.py:10
+msgid "RFID Card"
+msgstr ""
+
+#: .\rfid\models.py:11 .\rfid\templates\rfid\card-list.html:6
+msgid "RFID Cards"
+msgstr ""
+
+#: .\rfid\models.py:14 .\rfid\templates\rfid\card-list.html:16
+msgid "Person"
+msgstr ""
+
+#: .\rfid\models.py:22
+msgid "Permission Name"
+msgstr ""
+
+#: .\rfid\models.py:36
+msgid "Entry"
+msgstr ""
+
+#: .\rfid\models.py:37
+msgid "Exit"
+msgstr ""
+
+#: .\rfid\models.py:38
+msgid "Access Denied"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:5
+#: .\rfid\templates\rfid\assign-permission.html:11
+msgid "Assign permissions to card"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:15
+msgid "Card owner"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:30
+#: .\rfid\templates\rfid\card-list.html:38
+msgid "Assign"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:33
+#: .\rfid\templates\rfid\card-edit.html:42
+msgid "Back to card list"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:38
+msgid "Current permissions"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:43
+msgid "Are you sure you want to remove this permission?"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:46
+msgid "Remove"
+msgstr ""
+
+#: .\rfid\templates\rfid\assign-permission.html:51
+msgid "No permissions are assigned."
+msgstr ""
+
+#: .\rfid\templates\rfid\card-confirm-delete.html:6
+msgid "Delete RFID Card"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-confirm-delete.html:7
+#: .\rfid\templates\rfid\card-list.html:40
+msgid "Are you sure you want to delete this card?"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-confirm-delete.html:13
+msgid "Yes, delete"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-confirm-delete.html:15
+msgid "Cancel"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-edit.html:6
+#: .\rfid\templates\rfid\card-edit.html:16
+msgid "Edit card settings"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-edit.html:8
+msgid "New card"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-edit.html:18
+msgid "Add card"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-edit.html:39
+msgid "Save"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:9
+msgid "Add New Card"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:19
+msgid "Permissions"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:20
+msgid "Actions"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:34
+msgid "None"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:39
+msgid "Edit"
+msgstr ""
+
+#: .\rfid\templates\rfid\card-list.html:40
+msgid "Delete"
+msgstr ""
+
+#: .\rfid\views.py:32
+msgid "Permissions have been assigned."
+msgstr ""
+
+#: .\rfid\views.py:48
+msgid "Card updated successfully."
+msgstr ""
+
+#: .\rfid\views.py:59
+msgid "Card deleted successfully."
+msgstr ""
+
+#: .\rfid\views.py:67
+msgid "Permission has been revoked."
+msgstr ""

@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views #login  importuje views z da
 app_name = 'core'
 
 urlpatterns = [
-    path('index', index, name='index'),
+    path('', index, name='index'),
+    path('index/', index, name='index'),
     path('switch_language/<str:language_code>/', switch_language, name='switch_language'),
     ]

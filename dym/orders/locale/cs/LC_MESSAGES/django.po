@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 21:03+0100\n"
+"POT-Creation-Date: 2025-06-06 11:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,142 +19,185 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: .\orders\admin.py:29 .\orders\models.py:27 .\orders\models.py:35
+#: .\orders\admin.py:29 .\orders\models.py:47 .\orders\models.py:73
+#: .\orders\models.py:105
 msgid "Order"
 msgstr "Objednávka"
 
-#: .\orders\admin.py:30
+#: .\orders\admin.py:30 .\orders\models.py:48
 msgid "Orders"
 msgstr "Objednávky"
 
-#: .\orders\admin.py:45
+#: .\orders\admin.py:45 .\orders\models.py:94
 msgid "Order Product"
 msgstr "Objednat produkt"
 
-#: .\orders\admin.py:46
+#: .\orders\admin.py:46 .\orders\models.py:95
 msgid "Order Products"
 msgstr "Objednat produkty"
 
-#: .\orders\admin.py:67
+#: .\orders\admin.py:67 .\orders\models.py:148
 msgid "Invoice"
 msgstr "Faktura"
 
-#: .\orders\admin.py:68
+#: .\orders\admin.py:68 .\orders\models.py:149
 msgid "Invoices"
 msgstr "Faktury"
 
-#: .\orders\models.py:7
-msgid "Product name"
-msgstr "Název produktu"
+#: .\orders\models.py:14
+#, fuzzy
+#| msgid "Order Problem"
+msgid "Order number"
+msgstr "Problém s objednávkou"
 
-#: .\orders\models.py:8 .\orders\models.py:36
+#: .\orders\models.py:20 .\orders\models.py:110 .\orders\models.py:161
 msgid "Customer"
 msgstr "Zákazník"
 
-#: .\orders\models.py:9
+#: .\orders\models.py:22
 msgid "Order date"
 msgstr "Datum objednávky"
 
-#: .\orders\models.py:10
+#: .\orders\models.py:23
 msgid "Required delivery date"
 msgstr "Požadované datum dodání"
 
-#: .\orders\models.py:11
+#: .\orders\models.py:24
 msgid "Shipped date"
 msgstr "Datum odeslání"
 
-#: .\orders\models.py:13
+#: .\orders\models.py:27
 msgid "New"
 msgstr "Nová"
 
-#: .\orders\models.py:14
+#: .\orders\models.py:28
 msgid "Processing"
 msgstr "Zpracování"
 
-#: .\orders\models.py:15
+#: .\orders\models.py:29
 msgid "Shipped"
 msgstr "Odesláno"
 
-#: .\orders\models.py:16
+#: .\orders\models.py:30
 msgid "Delivered"
 msgstr "Doručeno"
 
-#: .\orders\models.py:17 .\orders\models.py:47
+#: .\orders\models.py:31 .\orders\models.py:135
 msgid "Canceled"
 msgstr "Zrušeno"
 
-#: .\orders\models.py:18 .\orders\models.py:46
+#: .\orders\models.py:32 .\orders\models.py:134
 msgid "Awaiting Payment"
 msgstr "Čeká na platbu"
 
-#: .\orders\models.py:19
+#: .\orders\models.py:33
 msgid "Returned"
 msgstr "Vráceno"
 
-#: .\orders\models.py:20
+#: .\orders\models.py:34
 msgid "Order Problem"
 msgstr "Problém s objednávkou"
 
-#: .\orders\models.py:21 .\orders\models.py:48
+#: .\orders\models.py:36 .\orders\models.py:137
 msgid "Status"
 msgstr "Stav"
 
-#: .\orders\models.py:22
+#: .\orders\models.py:41
 msgid "Comment in HTML format"
 msgstr "Komentář ve formátu HTML"
 
-#: .\orders\models.py:23 .\orders\models.py:31 .\orders\models.py:50
+#: .\orders\models.py:43 .\orders\models.py:90 .\orders\models.py:144
+#: .\orders\models.py:162
 msgid "Created at"
 msgstr "Vytvoření"
 
-#: .\orders\models.py:24 .\orders\models.py:32 .\orders\models.py:51
+#: .\orders\models.py:44 .\orders\models.py:91 .\orders\models.py:145
+#: .\orders\models.py:163
 msgid "Updated at"
 msgstr "Aktualizace"
 
-#: .\orders\models.py:28
-msgid "Product"
-msgstr "Produkt"
+#: .\orders\models.py:78
+#, fuzzy
+#| msgid "Order Product"
+msgid "Ordered product"
+msgstr "Objednat produkt"
 
-#: .\orders\models.py:29
+#: .\orders\models.py:83
 msgid "Quantity"
 msgstr "Množství"
 
-#: .\orders\models.py:30
+#: .\orders\models.py:88
 msgid "Price each"
 msgstr "Cena za kus"
 
-#: .\orders\models.py:37
+#: .\orders\models.py:112
 msgid "Invoice issue date"
 msgstr "Datum vystavení faktury"
 
-#: .\orders\models.py:38
+#: .\orders\models.py:113
 msgid "Invoice due date"
 msgstr "Datum splatnosti faktury"
 
-#: .\orders\models.py:39
+#: .\orders\models.py:114
 msgid "Payment date"
 msgstr "Datum zaplacení faktury"
 
-#: .\orders\models.py:40
+#: .\orders\models.py:118
 msgid "Total invoice amount"
 msgstr "Celková částka faktury"
 
-#: .\orders\models.py:41
+#: .\orders\models.py:123
 msgid "Tax amount"
 msgstr "Výše daně"
 
-#: .\orders\models.py:42
+#: .\orders\models.py:128
 msgid "Subtotal amount"
 msgstr "Mezisoučet"
 
-#: .\orders\models.py:44
+#: .\orders\models.py:132
 msgid "Issued"
 msgstr "Vydána"
 
-#: .\orders\models.py:45
+#: .\orders\models.py:133
 msgid "Paid"
 msgstr "Zaplacena"
 
-#: .\orders\models.py:49
+#: .\orders\models.py:142
 msgid "Comment about the invoice"
 msgstr "Komentář k faktuře"
+
+#: .\orders\models.py:157
+#, fuzzy
+#| msgid "Order Product"
+msgid "Sold product"
+msgstr "Objednat produkt"
+
+#: .\orders\models.py:158
+#, fuzzy
+#| msgid "Quantity"
+msgid "Quantity sold"
+msgstr "Množství"
+
+#: .\orders\models.py:159
+msgid "Sale price"
+msgstr ""
+
+#: .\orders\models.py:160
+#, fuzzy
+#| msgid "Shipped date"
+msgid "Sale date"
+msgstr "Datum odeslání"
+
+#: .\orders\models.py:166
+msgid "Sale"
+msgstr ""
+
+#: .\orders\models.py:167
+msgid "Sales"
+msgstr ""
+
+#~ msgid "Product name"
+#~ msgstr "Název produktu"
+
+#~ msgid "Product"
+#~ msgstr "Produkt"

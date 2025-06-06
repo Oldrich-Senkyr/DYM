@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 18:43+0100\n"
+"POT-Creation-Date: 2025-06-06 11:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\entities\admin.py:16 .\entities\templates\entities\entity_list.html:16
-msgid "Company Name"
+#: .\entities\admin.py:16 .\entities\models.py:5
+msgid "Company name (First name, Last name)"
 msgstr ""
 
 #: .\entities\admin.py:17 .\entities\models.py:6
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:59
-#: .\entities\templates\entities\entity_create.html:43
-#: .\entities\templates\entities\entity_edit.html:35
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:54
+#: .\entities\templates\entities\entity_create.html:58
+#: .\entities\templates\entities\entity_edit.html:48
 #: .\entities\templates\entities\entity_list.html:18
 msgid "Company ID"
 msgstr ""
@@ -34,154 +34,164 @@ msgstr ""
 msgid "VAT ID"
 msgstr ""
 
-#: .\entities\models.py:5
-msgid "Company name (First name, Last name)"
+#: .\entities\admin.py:19 .\entities\models.py:8
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:41
+#: .\entities\templates\entities\entity_create.html:43
+#: .\entities\templates\entities\entity_edit.html:32
+msgid "Legal Form"
+msgstr ""
+
+#: .\entities\admin.py:20 .\entities\models.py:9
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:48
+#: .\entities\templates\entities\entity_create.html:51
+#: .\entities\templates\entities\entity_edit.html:41
+msgid "Entity Type"
 msgstr ""
 
 #: .\entities\models.py:7
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:66
-#: .\entities\templates\entities\entity_create.html:51
-#: .\entities\templates\entities\entity_edit.html:39
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:62
+#: .\entities\templates\entities\entity_create.html:65
+#: .\entities\templates\entities\entity_edit.html:55
 msgid "Company VAT"
 msgstr ""
 
-#: .\entities\models.py:8 .\entities\models.py:29 .\entities\models.py:42
-#: .\entities\models.py:62
+#: .\entities\models.py:10 .\entities\models.py:31 .\entities\models.py:44
+#: .\entities\models.py:64
 msgid "Created at"
 msgstr ""
 
-#: .\entities\models.py:9 .\entities\models.py:30 .\entities\models.py:43
-#: .\entities\models.py:63
+#: .\entities\models.py:11 .\entities\models.py:32 .\entities\models.py:45
+#: .\entities\models.py:65
 msgid "Updated at"
 msgstr ""
 
-#: .\entities\models.py:12 .\entities\models.py:19 .\entities\models.py:35
-#: .\entities\models.py:49
+#: .\entities\models.py:14 .\entities\models.py:21 .\entities\models.py:37
+#: .\entities\models.py:51
 msgid "Entity"
 msgstr ""
 
-#: .\entities\models.py:13
+#: .\entities\models.py:15
 msgid "Entities"
 msgstr ""
 
-#: .\entities\models.py:20
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:114
-#: .\entities\templates\entities\entity_create.html:92
-#: .\entities\templates\entities\entity_edit.html:62
+#: .\entities\models.py:22
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:103
+#: .\entities\templates\entities\entity_create.html:108
+#: .\entities\templates\entities\entity_edit.html:79
 msgid "Street"
 msgstr ""
 
-#: .\entities\models.py:21
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:109
-#: .\entities\templates\entities\entity_create.html:79
-#: .\entities\templates\entities\entity_edit.html:58
+#: .\entities\models.py:23
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:90
+#: .\entities\templates\entities\entity_create.html:93
+#: .\entities\templates\entities\entity_edit.html:73
 msgid "City"
 msgstr ""
 
-#: .\entities\models.py:22
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:120
-#: .\entities\templates\entities\entity_create.html:105
-#: .\entities\templates\entities\entity_edit.html:66
+#: .\entities\models.py:24
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:116
+#: .\entities\templates\entities\entity_create.html:123
+#: .\entities\templates\entities\entity_edit.html:85
 msgid "Postal code"
 msgstr ""
 
-#: .\entities\models.py:23
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:125
-#: .\entities\templates\entities\entity_create.html:118
-#: .\entities\templates\entities\entity_edit.html:70
+#: .\entities\models.py:25
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:129
+#: .\entities\templates\entities\entity_create.html:136
+#: .\entities\templates\entities\entity_edit.html:89
 msgid "Country"
 msgstr ""
 
-#: .\entities\models.py:25
+#: .\entities\models.py:27
 msgid "Billing"
 msgstr ""
 
-#: .\entities\models.py:26
+#: .\entities\models.py:28
 msgid "Shipping"
 msgstr ""
 
-#: .\entities\models.py:27
+#: .\entities\models.py:29
 msgid "Other"
 msgstr ""
 
-#: .\entities\models.py:28
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:129
-#: .\entities\templates\entities\entity_create.html:131
-#: .\entities\templates\entities\entity_edit.html:74
+#: .\entities\models.py:30
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:142
+#: .\entities\templates\entities\entity_create.html:149
+#: .\entities\templates\entities\entity_edit.html:93
 msgid "Address type"
 msgstr ""
 
-#: .\entities\models.py:36
+#: .\entities\models.py:38
 msgid "First name"
 msgstr ""
 
-#: .\entities\models.py:37
+#: .\entities\models.py:39
 msgid "Last name"
 msgstr ""
 
-#: .\entities\models.py:38
+#: .\entities\models.py:40
 msgid "Email address"
 msgstr ""
 
-#: .\entities\models.py:39
+#: .\entities\models.py:41
 msgid "Phone number"
 msgstr ""
 
-#: .\entities\models.py:40
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:162
-#: .\entities\templates\entities\entity_create.html:183
-#: .\entities\templates\entities\entity_edit.html:106
+#: .\entities\models.py:42
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:194
+#: .\entities\templates\entities\entity_create.html:208
+#: .\entities\templates\entities\entity_edit.html:131
 msgid "Position"
 msgstr ""
 
-#: .\entities\models.py:41
+#: .\entities\models.py:43
 msgid "Primary contact"
 msgstr ""
 
-#: .\entities\models.py:50
-msgid "Account name"
-msgstr ""
-
-#: .\entities\models.py:51
-msgid "Bank account number"
-msgstr ""
-
 #: .\entities\models.py:52
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:193
-#: .\entities\templates\entities\entity_create.html:220
-#: .\entities\templates\entities\entity_edit.html:134
-msgid "IBAN"
+msgid "Account owner"
 msgstr ""
 
 #: .\entities\models.py:53
-msgid "SWIFT code"
+msgid "Bank account number"
 msgstr ""
 
 #: .\entities\models.py:54
-msgid "Bank name"
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:231
+#: .\entities\templates\entities\entity_create.html:252
+#: .\entities\templates\entities\entity_edit.html:169
+msgid "IBAN"
+msgstr ""
+
+#: .\entities\models.py:55
+msgid "SWIFT code"
 msgstr ""
 
 #: .\entities\models.py:56
-msgid "CZK"
-msgstr ""
-
-#: .\entities\models.py:57
-msgid "EUR"
+msgid "Bank name"
 msgstr ""
 
 #: .\entities\models.py:58
-msgid "USD"
+msgid "CZK"
 msgstr ""
 
 #: .\entities\models.py:59
-msgid "GBP"
+msgid "EUR"
 msgstr ""
 
 #: .\entities\models.py:60
-msgid "CHF"
+msgid "USD"
 msgstr ""
 
 #: .\entities\models.py:61
+msgid "GBP"
+msgstr ""
+
+#: .\entities\models.py:62
+msgid "CHF"
+msgstr ""
+
+#: .\entities\models.py:63
 msgid "Account currency"
 msgstr ""
 
@@ -191,7 +201,7 @@ msgid "Confirm Delete"
 msgstr ""
 
 #: .\entities\templates\entities\entity_confirm_delete.html:9
-#: .\entities\templates\entities\entity_list.html:58
+#: .\entities\templates\entities\entity_list.html:56
 msgid "Are you sure you want to delete this entity?"
 msgstr ""
 
@@ -203,133 +213,122 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:5
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:9
-#: .\entities\templates\entities\entity_create.html:6
-#: .\entities\templates\entities\entity_create.html:10
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:6
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:10
+#: .\entities\templates\entities\entity_create.html:7
+#: .\entities\templates\entities\entity_create.html:11
 msgid "Create Entity"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:27
-#: .\entities\templates\entities\entity_create.html:28
-#: .\entities\templates\entities\entity_edit.html:16
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:28
+#: .\entities\templates\entities\entity_create.html:29
+#: .\entities\templates\entities\entity_edit.html:18
 msgid "Entity Information"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:32
-#: .\entities\templates\entities\entity_edit.html:19
-msgid "Display name"
-msgstr ""
-
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:38
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:34
 #: .\entities\templates\entities\entity_create.html:34
 #: .\entities\templates\entities\entity_edit.html:23
 msgid "Company name"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:45
-#: .\entities\templates\entities\entity_edit.html:27
-msgid "Subject"
-msgstr ""
-
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:52
-#: .\entities\templates\entities\entity_edit.html:31
-msgid "Legal entity type"
-msgstr ""
-
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:73
-#: .\entities\templates\entities\entity_edit.html:43
-msgid "Birth number"
-msgstr ""
-
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:99
-#: .\entities\templates\entities\entity_create.html:63
-#: .\entities\templates\entities\entity_edit.html:53
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:74
+#: .\entities\templates\entities\entity_create.html:77
+#: .\entities\templates\entities\entity_edit.html:67
 msgid "Address"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:140
-#: .\entities\templates\entities\entity_create.html:160
-#: .\entities\templates\entities\entity_edit.html:85
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:171
+#: .\entities\templates\entities\entity_create.html:178
+#: .\entities\templates\entities\entity_edit.html:104
 msgid "Contact Person"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:145
-#: .\entities\templates\entities\entity_create.html:166
-#: .\entities\templates\entities\entity_edit.html:90
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:177
+#: .\entities\templates\entities\entity_create.html:184
+#: .\entities\templates\entities\entity_edit.html:109
 msgid "First Name"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:149
-#: .\entities\templates\entities\entity_create.html:170
-#: .\entities\templates\entities\entity_edit.html:94
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:181
+#: .\entities\templates\entities\entity_create.html:190
+#: .\entities\templates\entities\entity_edit.html:115
 msgid "Last Name"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:154
-#: .\entities\templates\entities\entity_create.html:175
-#: .\entities\templates\entities\entity_edit.html:98
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:186
+#: .\entities\templates\entities\entity_create.html:198
+#: .\entities\templates\entities\entity_edit.html:121
 msgid "Email"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:158
-#: .\entities\templates\entities\entity_create.html:179
-#: .\entities\templates\entities\entity_edit.html:102
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:190
+#: .\entities\templates\entities\entity_create.html:204
+#: .\entities\templates\entities\entity_edit.html:127
 msgid "Phone Number"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:173
-#: .\entities\templates\entities\entity_create.html:194
-#: .\entities\templates\entities\entity_edit.html:117
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:205
+#: .\entities\templates\entities\entity_create.html:219
+#: .\entities\templates\entities\entity_edit.html:142
 msgid "Bank Account"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:179
-#: .\entities\templates\entities\entity_create.html:201
-#: .\entities\templates\entities\entity_edit.html:122
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:212
+#: .\entities\templates\entities\entity_create.html:226
+#: .\entities\templates\entities\entity_edit.html:147
 msgid "Bank Name"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:183
-#: .\entities\templates\entities\entity_create.html:205
-#: .\entities\templates\entities\entity_edit.html:126
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:216
 msgid "Account Name"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:188
-#: .\entities\templates\entities\entity_create.html:210
-#: .\entities\templates\entities\entity_edit.html:130
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:221
+#: .\entities\templates\entities\entity_create.html:240
+#: .\entities\templates\entities\entity_edit.html:159
 msgid "Account Number"
 msgstr ""
 
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:198
-#: .\entities\templates\entities\entity_create.html:225
-#: .\entities\templates\entities\entity_edit.html:138
-msgid "SWIFT"
-msgstr ""
-
-#: ⁨.\entities\templates\entities\entity_create copy.html⁩:210
-#: .\entities\templates\entities\entity_create.html:237
-#: .\entities\templates\entities\entity_edit.html:149
-msgid "Save"
-msgstr ""
-
-#: .\entities\templates\entities\entity_create.html:215
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:226
+#: .\entities\templates\entities\entity_create.html:247
+#: .\entities\templates\entities\entity_edit.html:164
 msgid "Currency"
 msgstr ""
 
-#: .\entities\templates\entities\entity_edit.html:5
-#: .\entities\templates\entities\entity_edit.html:9
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:236
+#: .\entities\templates\entities\entity_create.html:259
+#: .\entities\templates\entities\entity_edit.html:175
+msgid "SWIFT"
+msgstr ""
+
+#: ⁨.\entities\templates\entities\entity_create copy 2.html⁩:248
+#: .\entities\templates\entities\entity_create.html:274
+#: .\entities\templates\entities\entity_edit.html:188
+msgid "Save"
+msgstr ""
+
+#: .\entities\templates\entities\entity_create.html:232
+#: .\entities\templates\entities\entity_edit.html:153
+msgid "Account Owner"
+msgstr ""
+
+#: .\entities\templates\entities\entity_edit.html:7
+#: .\entities\templates\entities\entity_edit.html:11
 msgid "Edit Entity"
 msgstr ""
 
 #: .\entities\templates\entities\entity_list.html:5
 #: .\entities\templates\entities\entity_list.html:9
-msgid "Entity List"
+msgid "Entities List"
 msgstr ""
 
 #: .\entities\templates\entities\entity_list.html:15
 msgid "Display Name"
+msgstr ""
+
+#: .\entities\templates\entities\entity_list.html:16
+msgid "Company Name"
 msgstr ""
 
 #: .\entities\templates\entities\entity_list.html:17
@@ -348,10 +347,6 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: .\entities\templates\entities\entity_list.html:41
-msgid "No entities found"
-msgstr ""
-
-#: .\entities\templates\entities\entity_list.html:50
+#: .\entities\templates\entities\entity_list.html:48
 msgid "Create New Entity"
 msgstr ""

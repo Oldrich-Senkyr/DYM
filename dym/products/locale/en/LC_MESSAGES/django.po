@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 18:47+0100\n"
+"POT-Creation-Date: 2025-06-06 11:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,82 +17,99 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\products\admin.py:24 .\products\models.py:28
-msgid "Product"
-msgstr ""
-
-#: .\products\admin.py:25
-msgid "Products"
-msgstr ""
-
-#: .\products\admin.py:43
-msgid "Packaging"
-msgstr ""
-
-#: .\products\admin.py:44
-msgid "Packagings"
-msgstr ""
-
-#: .\products\models.py:7
-msgid "Product name"
-msgstr ""
-
-#: .\products\models.py:8
-msgid "Vendor"
-msgstr ""
-
-#: .\products\models.py:9
-msgid "Product description"
-msgstr ""
-
-#: .\products\models.py:10
-msgid "Product description HTML file"
-msgstr ""
 
 #: .\products\models.py:11
-msgid "In stock"
-msgstr ""
-
-#: .\products\models.py:12
-msgid "In stock reserved"
-msgstr ""
-
-#: .\products\models.py:13
-msgid "Ordered"
-msgstr ""
-
-#: .\products\models.py:14
-msgid "Buy price"
-msgstr ""
-
-#: .\products\models.py:15 .\products\models.py:26
-msgid "Created at"
-msgstr ""
-
-#: .\products\models.py:16 .\products\models.py:27
-msgid "Updated at"
-msgstr ""
-
-#: .\products\models.py:20
 msgid "Length in cm"
 msgstr ""
 
-#: .\products\models.py:21
+#: .\products\models.py:12
 msgid "Width in cm"
 msgstr ""
 
-#: .\products\models.py:22
+#: .\products\models.py:13
 msgid "Height in cm"
 msgstr ""
 
-#: .\products\models.py:23
+#: .\products\models.py:14
 msgid "Volume in litres"
 msgstr ""
 
-#: .\products\models.py:24
+#: .\products\models.py:15
 msgid "Net weight in kg"
 msgstr ""
 
-#: .\products\models.py:25
+#: .\products\models.py:16
 msgid "Gross weight in kg"
+msgstr ""
+
+#: .\products\models.py:17
+msgid "Packaging name"
+msgstr ""
+
+#: .\products\models.py:18 .\products\models.py:45
+msgid "Created at"
+msgstr ""
+
+#: .\products\models.py:19 .\products\models.py:46
+msgid "Updated at"
+msgstr ""
+
+#: .\products\models.py:22 .\products\models.py:62
+msgid "Packaging"
+msgstr ""
+
+#: .\products\models.py:23
+msgid "Packagings"
+msgstr ""
+
+#: .\products\models.py:41
+msgid "Product name"
+msgstr ""
+
+#: .\products\models.py:42
+msgid "Vendor"
+msgstr ""
+
+#: .\products\models.py:43
+msgid "Product description"
+msgstr ""
+
+#: .\products\models.py:44
+msgid "Product description HTML file"
+msgstr ""
+
+#: .\products\models.py:49 .\products\models.py:61
+msgid "Product"
+msgstr ""
+
+#: .\products\models.py:50
+msgid "Products"
+msgstr ""
+
+#: .\products\models.py:63
+msgid "Quantity of products in this packaging"
+msgstr ""
+
+#: .\products\models.py:64
+msgid "Price per packaging"
+msgstr ""
+
+#: .\products\models.py:65
+msgid "Stock quantity of this packaging"
+msgstr ""
+
+#: .\products\models.py:66
+msgid "Reserved quantity"
+msgstr ""
+
+#: .\products\models.py:67
+msgid "Ordered quantity"
+msgstr ""
+
+#: .\products\models.py:70
+msgid "Stock"
+msgstr ""
+
+#: .\products\models.py:71
+msgid "Stocks"
 msgstr ""

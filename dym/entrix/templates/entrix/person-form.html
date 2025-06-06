@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block title %}
-  {% if is_editing %}{% trans "Upravit osobu" %}{% else %}{% trans "Nová osoba" %}{% endif %}
+  {% if is_editing %}{% trans "Edit person" %}{% else %}{% trans "New person" %}{% endif %}
 {% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto mt-6 bg-white p-6 rounded shadow">
     <h1 class="text-xl font-bold mb-4">
-        {% if is_editing %}{% trans "Upravit osobu" %}{% else %}{% trans "Přidat osobu" %}{% endif %}
+        {% if is_editing %}{% trans "Edit person" %}{% else %}{% trans "Add person" %}{% endif %}
     </h1>
     <form method="post" class="grid gap-4">
         {% csrf_token %}
@@ -23,10 +23,10 @@
         </div>
 
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            {% trans "Uložit" %}
+            {% trans "Save" %}
         </button>
         <a href="{% url 'entrix:persons_list' %}" class="ml-2 text-gray-600 hover:underline">
-            {% trans "Zpět na seznam" %}
+            {% trans "Back to list" %}
         </a>
     </form>
 </div>

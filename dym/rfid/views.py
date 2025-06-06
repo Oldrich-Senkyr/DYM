@@ -17,7 +17,7 @@ def card_create(request):
         form = RFIDCardForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('rfid:card-list')
+            return redirect('rfid:card_list')
     else:
         form = RFIDCardForm()
     return render(request, 'rfid/card-edit.html', {'form': form})
@@ -29,7 +29,7 @@ def card_permission_assign(request, card_id):
         form = CardPermissionForm(request.POST, card=card)
         if form.is_valid():
             form.save()
-            messages.success(request, _("Oprávnění bylo přiřazeno."))
+            messages.success(request, _("Permissions have been assigned."))
             return redirect('rfid:card_permission_assign', card_id=card.id)
     else:
         form = CardPermissionForm(card=card)
@@ -64,5 +64,5 @@ def remove_permission(request, card_id, permission_id):
     card = get_object_or_404(RFIDCard, id=card_id)
     permission = get_object_or_404(Permission, id=permission_id)
     CardPermission.objects.filter(card=card, permission=permission).delete()
-    messages.success(request, _("Oprávnění bylo odebráno."))
+    messages.success(request, _("Permission has been revoked."))
     return redirect("rfid:card_permission_assign", card_id=card_id)

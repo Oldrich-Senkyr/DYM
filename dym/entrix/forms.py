@@ -26,7 +26,7 @@ class PersonForm(forms.ModelForm):
             if self.instance.pk:
                 qs = qs.exclude(pk=self.instance.pk)
             if qs.exists():
-                raise forms.ValidationError("Toto ID osoby již existuje.")
+                raise forms.ValidationError("This person ID already exists")
             return unique_id
 
         def clean_display_name(self):
@@ -35,5 +35,5 @@ class PersonForm(forms.ModelForm):
             if self.instance.pk:
                 qs = qs.exclude(pk=self.instance.pk)
             if qs.exists():
-                raise forms.ValidationError("Zobrazované jméno už existuje.")
+                raise forms.ValidationError("The displayed name already exists.")
             return display_name

@@ -7,59 +7,59 @@ from .models import IngestedData
 from django.conf import settings
 import logging
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.utils.translation import gettext as _
+import csv
+import io
+from io import TextIOWrapper
 
 logger = logging.getLogger(__name__)
 
 @csrf_exempt
+#ingest_data --------------------------------------------------------------------------------
+@csrf_exempt
 def ingest_data(request):
     if request.method == 'POST':
-        user_agent = request.headers.get('User-Agent', '').lower()
-        is_browser = 'mozilla' in user_agent or 'chrome' in user_agent or 'safari' in user_agent
-        is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        if 'import_csv' in request.POST:
+            csv_file = request.FILES.get('csv_file')
+            if csv_file:
+                try:
+                    decoded_file = TextIOWrapper(csv_file.file, encoding='utf-8')
+                    reader = csv.DictReader(decoded_file)
+                    for row in reader:
+                        record = {
+                            'Datum': row.get('date', '').strip(),
+                            'Hodina': row.get('time', '').strip(),
+                            'CisloKarty': row.get('card_number', '').strip().strip("'"),
+                            'SenderName': row.get('reader_id', '').strip(),
+                            'TypUdalosti': row.get('entry_type', '').strip().strip("'"),
+                        }
+                        IngestedData.objects.create(data=json.dumps(record), received_at=now())
+                    messages.success(request, _("Data byla úspěšně importována."))
+                except Exception as e:
+                    messages.error(request, _("Chyba při importu CSV: ") + str(e))
+            return redirect('ingest:read_data')
 
-        logger.info(f"User-Agent: {user_agent}")
-        logger.info(f"Is browser: {is_browser}, Is AJAX: {is_ajax}")
+        else:
+            # JSON import
+            json_data = request.POST.get('data')
+            try:
+                parsed_data = json.loads(json_data)
+                IngestedData.objects.create(data=json.dumps(parsed_data), received_at=now())
+                messages.success(request, _("Data byla úspěšně uložena."))
+            except json.JSONDecodeError:
+                messages.error(request, _("Neplatný JSON."))
+            return redirect('ingest:read_data')
 
-        if not (is_browser or is_ajax):
-            token = request.headers.get('Authorization', '')
-            if not token.startswith('Bearer '):
-                return JsonResponse({'error': 'Unauthorized: Missing or invalid Authorization token'}, status=401)
-            if token.removeprefix("Bearer ") != settings.SECRET_INGEST_TOKEN:
-                return JsonResponse({'error': 'Unauthorized: Invalid token'}, status=401)
-
-        try:
-            if is_browser or is_ajax:
-                data = request.POST.get('data', '')
-                if not data:
-                    return JsonResponse({'error': 'No data provided in POST'}, status=400)
-                payload = json.loads(data, object_pairs_hook=OrderedDict)
-            else:
-                payload = json.loads(request.body, object_pairs_hook=OrderedDict)
-
-            ingested_data = IngestedData.objects.create(data=payload)
-            response_data = OrderedDict([
-                ("message", "Data ingested successfully!"),
-                ("id", ingested_data.id)
-            ])
-            return JsonResponse(response_data, status=201)
-
-        except json.JSONDecodeError:
-            logger.error("Invalid JSON received")
-            return JsonResponse({'error': 'Invalid JSON format'}, status=400)
-        except Exception as e:
-            logger.error(f"An error occurred: {str(e)}")
-            return JsonResponse({'error': 'An error occurred', 'details': str(e)}, status=500)
-
-    # GET: Show ingested data, possibly filtered by card_number
+    # GET request – výpis a filtrování
     card_number = request.GET.get('card_number')
-    ingested_data = IngestedData.objects.all().order_by('-received_at')
-
     if card_number:
-        ingested_data = ingested_data.filter(data__card_number__icontains=card_number)
+        ingested_data = IngestedData.objects.filter(data__icontains=card_number).order_by('-received_at')
+    else:
+        ingested_data = IngestedData.objects.all().order_by('-received_at')
 
-    return render(request, 'ingest/list.html', {
-        'ingested_data': ingested_data
-    })
+    return render(request, 'ingest/list.html', {'ingested_data': ingested_data})
+#--------------------------------------------------------------------------------
 
 
 def export_data(request):
@@ -83,3 +83,5 @@ def delete_data(request, pk):
         obj.delete()
         return redirect('ingest:read_data')
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 21:03+0100\n"
+"POT-Creation-Date: 2025-06-06 11:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,142 +18,169 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\orders\admin.py:29 .\orders\models.py:27 .\orders\models.py:35
+#: .\orders\admin.py:29 .\orders\models.py:47 .\orders\models.py:73
+#: .\orders\models.py:105
 msgid "Order"
 msgstr ""
 
-#: .\orders\admin.py:30
+#: .\orders\admin.py:30 .\orders\models.py:48
 msgid "Orders"
 msgstr ""
 
-#: .\orders\admin.py:45
+#: .\orders\admin.py:45 .\orders\models.py:94
 msgid "Order Product"
 msgstr ""
 
-#: .\orders\admin.py:46
+#: .\orders\admin.py:46 .\orders\models.py:95
 msgid "Order Products"
 msgstr ""
 
-#: .\orders\admin.py:67
+#: .\orders\admin.py:67 .\orders\models.py:148
 msgid "Invoice"
 msgstr ""
 
-#: .\orders\admin.py:68
+#: .\orders\admin.py:68 .\orders\models.py:149
 msgid "Invoices"
 msgstr ""
 
-#: .\orders\models.py:7
-msgid "Product name"
+#: .\orders\models.py:14
+msgid "Order number"
 msgstr ""
 
-#: .\orders\models.py:8 .\orders\models.py:36
+#: .\orders\models.py:20 .\orders\models.py:110 .\orders\models.py:161
 msgid "Customer"
 msgstr ""
 
-#: .\orders\models.py:9
+#: .\orders\models.py:22
 msgid "Order date"
 msgstr ""
 
-#: .\orders\models.py:10
+#: .\orders\models.py:23
 msgid "Required delivery date"
 msgstr ""
 
-#: .\orders\models.py:11
+#: .\orders\models.py:24
 msgid "Shipped date"
 msgstr ""
 
-#: .\orders\models.py:13
+#: .\orders\models.py:27
 msgid "New"
 msgstr ""
 
-#: .\orders\models.py:14
+#: .\orders\models.py:28
 msgid "Processing"
 msgstr ""
 
-#: .\orders\models.py:15
+#: .\orders\models.py:29
 msgid "Shipped"
 msgstr ""
 
-#: .\orders\models.py:16
+#: .\orders\models.py:30
 msgid "Delivered"
 msgstr ""
 
-#: .\orders\models.py:17 .\orders\models.py:47
+#: .\orders\models.py:31 .\orders\models.py:135
 msgid "Canceled"
 msgstr ""
 
-#: .\orders\models.py:18 .\orders\models.py:46
+#: .\orders\models.py:32 .\orders\models.py:134
 msgid "Awaiting Payment"
 msgstr ""
 
-#: .\orders\models.py:19
+#: .\orders\models.py:33
 msgid "Returned"
 msgstr ""
 
-#: .\orders\models.py:20
+#: .\orders\models.py:34
 msgid "Order Problem"
 msgstr ""
 
-#: .\orders\models.py:21 .\orders\models.py:48
+#: .\orders\models.py:36 .\orders\models.py:137
 msgid "Status"
 msgstr ""
 
-#: .\orders\models.py:22
+#: .\orders\models.py:41
 msgid "Comment in HTML format"
 msgstr ""
 
-#: .\orders\models.py:23 .\orders\models.py:31 .\orders\models.py:50
+#: .\orders\models.py:43 .\orders\models.py:90 .\orders\models.py:144
+#: .\orders\models.py:162
 msgid "Created at"
 msgstr ""
 
-#: .\orders\models.py:24 .\orders\models.py:32 .\orders\models.py:51
+#: .\orders\models.py:44 .\orders\models.py:91 .\orders\models.py:145
+#: .\orders\models.py:163
 msgid "Updated at"
 msgstr ""
 
-#: .\orders\models.py:28
-msgid "Product"
+#: .\orders\models.py:78
+msgid "Ordered product"
 msgstr ""
 
-#: .\orders\models.py:29
+#: .\orders\models.py:83
 msgid "Quantity"
 msgstr ""
 
-#: .\orders\models.py:30
+#: .\orders\models.py:88
 msgid "Price each"
 msgstr ""
 
-#: .\orders\models.py:37
+#: .\orders\models.py:112
 msgid "Invoice issue date"
 msgstr ""
 
-#: .\orders\models.py:38
+#: .\orders\models.py:113
 msgid "Invoice due date"
 msgstr ""
 
-#: .\orders\models.py:39
+#: .\orders\models.py:114
 msgid "Payment date"
 msgstr ""
 
-#: .\orders\models.py:40
+#: .\orders\models.py:118
 msgid "Total invoice amount"
 msgstr ""
 
-#: .\orders\models.py:41
+#: .\orders\models.py:123
 msgid "Tax amount"
 msgstr ""
 
-#: .\orders\models.py:42
+#: .\orders\models.py:128
 msgid "Subtotal amount"
 msgstr ""
 
-#: .\orders\models.py:44
+#: .\orders\models.py:132
 msgid "Issued"
 msgstr ""
 
-#: .\orders\models.py:45
+#: .\orders\models.py:133
 msgid "Paid"
 msgstr ""
 
-#: .\orders\models.py:49
+#: .\orders\models.py:142
 msgid "Comment about the invoice"
+msgstr ""
+
+#: .\orders\models.py:157
+msgid "Sold product"
+msgstr ""
+
+#: .\orders\models.py:158
+msgid "Quantity sold"
+msgstr ""
+
+#: .\orders\models.py:159
+msgid "Sale price"
+msgstr ""
+
+#: .\orders\models.py:160
+msgid "Sale date"
+msgstr ""
+
+#: .\orders\models.py:166
+msgid "Sale"
+msgstr ""
+
+#: .\orders\models.py:167
+msgid "Sales"
 msgstr ""
