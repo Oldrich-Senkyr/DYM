@@ -80,27 +80,7 @@
                 {% endif %}    
                 {% if IS_VEROS %}    
                     {% if user.is_authenticated %}
-
-                        <!-- Dropdown Menu Attendance -->
-                        <div class="relative">
-                            <button class="px-6 py-3 text-lg font-semibold bg-yellow-500 text-white rounded-xl hover:bg-yellow-700" data-dropdown="dropdownMenu_attendance">
-                                {% trans "Attendance" %}
-                            </button>
-                            <div id="dropdownMenu_attendance" class="absolute hidden bg-yellow-200 shadow-md rounded-lg mt-2 space-y-2">
-                                <a href="{% url 'entrix:persons_presence' %}" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-yellow-700 hover:text-white rounded-t-lg">
-                                    {% trans "Presence" %}
-                                </a>
-                                <div class="h-1 bg-white"></div>
-                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-yellow-700 hover:text-white">
-                                    {% trans "God knows" %}
-                                </a>
-                                <div class="h-1 bg-white"></div>
-                                <a href="#" class="block px-6 py-3 text-lg font-semibold text-black hover:bg-yellow-700 hover:text-white rounded-b-lg">
-                                    {% trans "God knows" %}
-                                </a>
-                            </div>
-                        </div>
-                    
+                        <a href="#" class="px-6 py-3 text-lg font-semibold bg-yellow-500 text-white rounded-xl hover:bg-yellow-700">{% trans "Attendance" %}</a>
                         <a href="#" class="px-6 py-3 text-lg font-semibold bg-green-500 text-white rounded-xl hover:bg-green-700">{% trans "Work Days" %}</a>
                         <a href="#" class="px-6 py-3 text-lg font-semibold bg-purple-500 text-white rounded-xl hover:bg-purple-700">{% trans "Projects" %}</a>
 

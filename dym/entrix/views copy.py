@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 from ingest.models import IngestedData
 from django.utils.translation import gettext as _
-import json
 
 
 
@@ -142,25 +141,11 @@ def person_import_csv(request):
     return render(request, 'entrix/person_import.html')
 
 
-from collections import defaultdict
-from datetime import datetime, timedelta
-from django.shortcuts import render
-from django.utils.translation import gettext_lazy as _
-from ingest.models import IngestedData
-from agent.models import Person
-import json
-
-
-def clean_field(val):
-    return str(val).strip().strip(",").strip("'").strip('"').upper()
-
-
 def validate_sequence(entry_types):
     if not entry_types:
         return False
     if entry_types[0] != "1" or entry_types[-1] != "2":
         return False
-
     i = 1
     while i < len(entry_types) - 1:
         if entry_types[i] == "3":
@@ -172,107 +157,101 @@ def validate_sequence(entry_types):
             return False
     return True
 
-
 def persons_presence(request):
     selected_date = request.GET.get('date')
-    selected_date_obj = None
-    if selected_date:
-        try:
-            selected_date_obj = datetime.strptime(selected_date, "%Y-%m-%d").date()
-        except ValueError:
-            selected_date_obj = None
-
     raw_persons = Person.objects.all()
+
+    # 1. Zpracování všech záznamů z IngestedData
+    events_by_day = defaultdict(list)
+    records = IngestedData.objects.all().order_by('received_at')
+
+    for record in records:
+        raw_data = record.data
+        if isinstance(raw_data, str):
+            try:
+                data = json.loads(raw_data)
+            except json.JSONDecodeError:
+                continue
+        else:
+            data = raw_data
+
+        required_keys = ['date', 'time', 'entry_type', 'card_number', 'reader_id']
+        if not all(k in data for k in required_keys):
+            continue
+
+        try:
+            date_str = data['date'].strip("' ")
+            time_str = data['time'].strip("' ")
+            dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
+            entry_type = data['entry_type'].strip().strip(",'")
+            card_number = data['card_number'].strip("' ")
+
+            key = (date_str, card_number)
+            events_by_day[key].append((dt, entry_type))
+        except Exception:
+            continue
+
+    def validate_sequence(entry_types):
+        if not entry_types or entry_types[0] != "1" or entry_types[-1] != "2":
+            return False
+        i = 1
+        while i < len(entry_types) - 1:
+            if entry_types[i] == "3":
+                i += 1
+                if i >= len(entry_types) - 1 or entry_types[i] != "1":
+                    return False
+                i += 1
+            else:
+                return False
+        return True
+
+    # 2. Vygeneruj data pro kazdou osobu
     persons = []
-
-    all_records = IngestedData.objects.all()
-
     for person in raw_persons:
         card = person.rfid_cards.first()
-        card_number = clean_field(card.card_id) if card else None
+        card_number = card.card_id if card else None
 
-        presence = None
+        arrival = departure = work_time = break_time = validation = None
 
-        if card_number and selected_date_obj:
-            events = []
-            for record in all_records:
-                raw_data = record.data
-                if isinstance(raw_data, str):
-                    try:
-                        data = json.loads(raw_data)
-                    except json.JSONDecodeError:
-                        continue
-                else:
-                    data = raw_data
-
-                required_keys = ['date', 'time', 'entry_type', 'card_number', 'reader_id']
-                if not all(k in data for k in required_keys):
-                    continue
-
-                date_str = clean_field(data['date'])
-                time_str = clean_field(data['time'])
-                data_card = clean_field(data['card_number'])
-                entry_type = clean_field(data['entry_type'])
-
-                if data_card != card_number:
-                    continue
-
-                try:
-                    dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
-                except Exception:
-                    continue
-
-                if dt.date() != selected_date_obj:
-                    continue
-
-                events.append((dt, entry_type))
-
+        if card_number and selected_date:
+            key = (selected_date, card_number)
+            events = events_by_day.get(key, [])
             events.sort()
-            arrival = None
-            departure = None
+
+            event_types = []
             breaks = []
             current_break_start = None
-            event_types = []
 
-            for dt, event_type in events:
-                event_types.append(event_type)
-                if event_type == "1":
+            for dt, etype in events:
+                event_types.append(etype)
+                if etype == "1":
                     if not arrival:
                         arrival = dt
                     elif current_break_start:
                         breaks.append((current_break_start, dt))
                         current_break_start = None
-                elif event_type == "3":
+                elif etype == "3":
                     current_break_start = dt
-                elif event_type == "2":
+                elif etype == "2":
                     departure = dt
 
             work_time = (departure - arrival) if arrival and departure else timedelta()
             break_time = sum((end - start for start, end in breaks), timedelta())
-            is_valid = validate_sequence(event_types)
-
-            presence = {
-                'arrival': arrival.strftime('%H:%M') if arrival else '-',
-                'departure': departure.strftime('%H:%M') if departure else '-',
-                'work_time': str(work_time),
-                'break_time': str(break_time),
-                'validation': "OK" if is_valid else "Invalid"
-            }
+            validation = _("OK") if validate_sequence(event_types) else _("Invalid")
 
         persons.append({
             'unique_id': person.unique_id,
             'first_name': person.first_name,
             'last_name': person.last_name,
             'get_role_display': person.get_role_display(),
-            'card_number': card_number if card_number else 'N/A',
-            'arrival': presence['arrival'] if presence else '-',
-            'departure': presence['departure'] if presence else '-',
-            'work_time': presence['work_time'] if presence else '-',
-            'break_time': presence['break_time'] if presence else '-',
-            'validation': presence['validation'] if presence else 'Invalid',
+            'card_number': card_number or '-',
+            'arrival': arrival.strftime('%H:%M') if arrival else '-',
+            'departure': departure.strftime('%H:%M') if departure else '-',
+            'work_time': str(work_time) if work_time else '-',
+            'break_time': str(break_time) if break_time else '-',
+            'validation': validation or '-',
         })
 
     return render(request, 'entrix/persons-presence.html', {
         'persons': persons,
-        'selected_date': selected_date
     })
