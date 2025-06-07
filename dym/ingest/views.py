@@ -34,7 +34,7 @@ def ingest_data(request):
                     for row in reader:
                         # Zachovat původní názvy sloupců
                         record = {k: v.strip().strip("'") for k, v in row.items()}
-                        IngestedData.objects.create(data=json.dumps(record), received_at=now())
+                        IngestedData.objects.create(data=record, received_at=now())
                     messages.success(request, _("Data byla úspěšně importována."))
                 except Exception as e:
                     messages.error(request, _("Chyba při importu CSV: ") + str(e))

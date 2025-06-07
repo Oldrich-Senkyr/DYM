@@ -32,7 +32,8 @@ urlpatterns += i18n_patterns(
     path('entities/', include('entities.urls')),
     path('ingest/', include('ingest.urls')),
     path('entrix/', include('entrix.urls', namespace='entrix')),
-    path('rfid/', include('rfid.urls', namespace='rfid')),    
+    path('rfid/', include('rfid.urls', namespace='rfid')),
+    path('mock/', include('mock.urls', namespace='mock')),       
   
     # Add other language-specific URLs here as needed
 )

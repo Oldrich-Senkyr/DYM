@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'ingest',
     'entrix',
     'rfid',          
+    'mock',          
     # ... ostatní aplikace
     'widget_tweaks',
 ]
