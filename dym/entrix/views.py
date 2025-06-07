@@ -136,3 +136,10 @@ def person_import_csv(request):
 
     return render(request, 'entrix/person_import.html')
 
+
+def persons_overview(request):
+    persons = Person.objects.all()
+
+    return render(request, 'entrix/persons-list.html', {
+        'persons': persons,
+    })

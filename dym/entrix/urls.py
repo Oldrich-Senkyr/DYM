@@ -11,4 +11,5 @@ urlpatterns = [
     path('persons/export/', views.person_export_csv, name='person_export_csv'),
     path('persons/import/', views.person_import_csv, name='person_import_csv'),
     path("persons/add/", views.person_add, name="person_add"),
+    path("persons/overview", views.persons_overview, name="persons_overview"),
 ]
