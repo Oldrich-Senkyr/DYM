@@ -189,6 +189,11 @@ def persons_presence(request):
 
     for person in raw_persons:
         card = person.rfid_cards.first()
+        if not card:
+            print(f"❌ {person.first_name} {person.last_name} nemá kartu.")
+        else:
+            print(f"✅ {person.first_name} {person.last_name} karta: {card.card_id}")
+
         card_number = clean_field(card.card_id) if card else None
 
         presence = None
