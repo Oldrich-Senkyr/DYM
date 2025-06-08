@@ -22,8 +22,24 @@ def persons_list(request):
     if unique_id:
         persons = persons.filter(unique_id__icontains=unique_id)
 
+    # Rozšířený výstup o číslo karty
+    enriched_persons = []
+    for person in persons:
+        card = person.rfid_cards.first()
+        card_number = card.card_id if card else 'N/A'
+        enriched_persons.append({
+            'id': person.id,
+            'unique_id': person.unique_id,
+            'display_name': getattr(person, 'display_name', ''),
+            'title_before': getattr(person, 'title_before', ''),
+            'first_name': person.first_name,
+            'last_name': person.last_name,
+            'role': person.get_role_display(),
+            'card_number': card_number
+        })
+
     return render(request, 'entrix/persons-list.html', {
-        'persons': persons,
+        'persons': enriched_persons,
     })
 
 
@@ -44,7 +60,7 @@ def person_add(request):
 
 
 
-def edit_person(request, pk):
+def person_edit(request, pk):
     person = get_object_or_404(Person, pk=pk)
     
     if request.method == 'POST':
@@ -63,7 +79,7 @@ def edit_person(request, pk):
     })
 
 
-def delete_person(request, pk):
+def person_delete(request, pk):
     person = get_object_or_404(Person, pk=pk)
     
     if request.method == 'POST':
@@ -141,14 +157,13 @@ def person_import_csv(request):
 
     return render(request, 'entrix/person_import.html')
 
-
+#---------------------------------------------Presence  -------------------------------------------
 from collections import defaultdict
 from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
-from ingest.models import IngestedData
+from ingest.models import CardEvent
 from agent.models import Person
-import json
 
 
 def clean_field(val):
@@ -172,6 +187,12 @@ def validate_sequence(entry_types):
             return False
     return True
 
+def format_duration(td):
+    total_minutes = int(td.total_seconds() // 60)
+    rounded_minutes = total_minutes - (total_minutes % 5)
+    hours = rounded_minutes // 60
+    minutes = rounded_minutes % 60
+    return f"{hours:02}:{minutes:02}"
 
 def persons_presence(request):
     selected_date = request.GET.get('date')
@@ -185,62 +206,42 @@ def persons_presence(request):
     raw_persons = Person.objects.all()
     persons = []
 
-    all_records = IngestedData.objects.all()
-
     for person in raw_persons:
-        card = person.rfid_cards.first()
-        if not card:
-            print(f"❌ {person.first_name} {person.last_name} nemá kartu.")
-        else:
-            print(f"✅ {person.first_name} {person.last_name} karta: {card.card_id}")
-
-        card_number = clean_field(card.card_id) if card else None
-
+        cards = person.rfid_cards.all()
+        selected_card = None
         presence = None
 
+        for card in cards:
+            card_number = clean_field(card.card_id)
+            if selected_date_obj:
+                events = CardEvent.objects.filter(
+                    card_number=card_number,
+                    date=selected_date_obj
+                ).order_by('timestamp')
+
+                if events.exists():
+                    selected_card = card
+                    break
+
+        card_number = clean_field(selected_card.card_id) if selected_card else None
+
         if card_number and selected_date_obj:
-            events = []
-            for record in all_records:
-                raw_data = record.data
-                if isinstance(raw_data, str):
-                    try:
-                        data = json.loads(raw_data)
-                    except json.JSONDecodeError:
-                        continue
-                else:
-                    data = raw_data
+            events = CardEvent.objects.filter(
+                card_number=card_number,
+                date=selected_date_obj
+            ).order_by('timestamp')
 
-                required_keys = ['date', 'time', 'entry_type', 'card_number', 'reader_id']
-                if not all(k in data for k in required_keys):
-                    continue
-
-                date_str = clean_field(data['date'])
-                time_str = clean_field(data['time'])
-                data_card = clean_field(data['card_number'])
-                entry_type = clean_field(data['entry_type'])
-
-                if data_card != card_number:
-                    continue
-
-                try:
-                    dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
-                except Exception:
-                    continue
-
-                if dt.date() != selected_date_obj:
-                    continue
-
-                events.append((dt, entry_type))
-
-            events.sort()
             arrival = None
             departure = None
             breaks = []
             current_break_start = None
             event_types = []
 
-            for dt, event_type in events:
+            for event in events:
+                dt = event.timestamp
+                event_type = event.event_type
                 event_types.append(event_type)
+
                 if event_type == "1":
                     if not arrival:
                         arrival = dt
@@ -259,8 +260,8 @@ def persons_presence(request):
             presence = {
                 'arrival': arrival.strftime('%H:%M') if arrival else '-',
                 'departure': departure.strftime('%H:%M') if departure else '-',
-                'work_time': str(work_time),
-                'break_time': str(break_time),
+                'work_time': format_duration(work_time),
+                'break_time': format_duration(break_time),
                 'validation': "OK" if is_valid else "Invalid"
             }
 
@@ -281,3 +282,6 @@ def persons_presence(request):
         'persons': persons,
         'selected_date': selected_date
     })
+
+
+#---------------------------------------------Presence  -------------------------------------------
