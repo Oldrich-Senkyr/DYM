@@ -95,6 +95,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
 ]
 
+if DEVELOPMENT_MODE:
+    INSTALLED_APPS += ['django_extensions']
+    
+
 AUTH_USER_MODEL = 'agent.AppUser'
 
 MIDDLEWARE = [
