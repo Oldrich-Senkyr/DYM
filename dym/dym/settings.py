@@ -149,8 +149,8 @@ if DEVELOPMENT_MODE:
             'NAME': 'dym',
             'USER': 'dym_admin',
             'PASSWORD': 'dymadmin',
-            'HOST': 'localhost',  # IP address of your PostgreSQL server
-            'PORT': '5433',  # Default PostgreSQL port
+            'HOST': '10.20.30.28',  # IP address of your PostgreSQL server
+            'PORT': '5432',  # Default PostgreSQL port
             #    'OPTIONS': {
             #       'charset': 'utf8mb4',
         #    }        
