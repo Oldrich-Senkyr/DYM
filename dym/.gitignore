@@ -1,12 +1,12 @@
 # Virtuální prostředí
 venv/
+env/
 .env
 *.env
+.env.*
 
-# PyCharm
+# PyCharm a VS Code
 .idea/
-
-# VS Code
 .vscode/
 *.code-workspace
 
@@ -15,12 +15,13 @@ db.sqlite3
 *.sqlite3
 *.db
 
-# Soubory migrací
+# Soubory migrací (kromě __init__.py)
 **/migrations/*.pyc
 **/migrations/__pycache__/
 **/migrations/*.py
+!**/migrations/__init__.py
 
-# Bytecode a cache soubory
+# Python bytecode a cache
 *.pyc
 __pycache__/
 *.pyo
@@ -30,7 +31,7 @@ __pycache__/
 staticfiles/
 static/
 
-# Média
+# Média (uploady)
 media/
 
 # Logy a dočasné soubory
@@ -39,19 +40,22 @@ logs/
 tmp/
 *.swp  # VIM swap soubory
 
-# Pipenv a Poetry
+# Správci závislostí
 Pipfile.lock
 poetry.lock
 
-# Pytest a testovací cache
+# Testovací výstupy
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Docker a deployment
+# Docker
 docker-compose.override.yml
 *.dockerfile
-.DS_Store  # MacOS systémový soubor
+
+# OS a systémové soubory
+.DS_Store  # macOS
+Thumbs.db  # Windows
 
 # Build složky (např. pro frontendové buildy)
 build/
