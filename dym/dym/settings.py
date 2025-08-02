@@ -39,6 +39,10 @@ SECRET_KEY = 'django-insecure-o^+exby0xsr8v+d%iyu96j#vt#2(c8fj!ys#=_rkwm1+oalu0m
 if DEVELOPMENT_MODE:
     DEBUG = True
     ALLOWED_HOSTS = ['10.20.30.70','10.20.30.71', 'localhost', '127.0.0.1']
+    CSRF_TRUSTED_ORIGINS = [
+    "https://localhost",
+    "https://127.0.0.1",
+    ]
 else:
     DEBUG = False
     ALLOWED_HOSTS = ['localhost', '127.0.0.1','194.182.86.168', 'abiz.cz', 'www.abiz.cz']
