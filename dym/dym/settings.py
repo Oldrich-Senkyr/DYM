@@ -45,7 +45,7 @@ if DEVELOPMENT_MODE:
     ]
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1','194.182.86.168', 'abiz.cz', 'www.abiz.cz']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1','194.182.86.116', 'veros.abiz.cz']
 
 
 # Povolit jen HTTPS připojení
