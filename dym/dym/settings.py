@@ -160,9 +160,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'dym',
-            'USER': 'dym_admin',
-            'PASSWORD': 'dymadmin',
+            'NAME': 'entrix',
+            'USER': 'entrix_admin',
+            'PASSWORD': 'entrixadmin',
             'HOST': 'localhost',  # IP address of your PostgreSQL server
             'PORT': '5432',  # Default PostgreSQL port
             #    'OPTIONS': {
@@ -242,27 +242,50 @@ SECRET_INGEST_TOKEN = 'a64a569afc769a89072e0abb21c20d0ea815860708f6436e95897c707
 
 # Podminky ruznych logu, tohle je log ze souboru middleware.py
 LOG_HOST_MIDDLEWARE_ENABLED = False
-LOGGING_ENABLED = False
+LOGGING_ENABLED = True
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+    'formatters': {
+        'verbose': {
+            'format': '[{asctime}] {levelname} {name}: {message}',
+            'style': '{',
         },
+    },
+    'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'] if LOGGING_ENABLED else [],
-            'level': 'DEBUG' if LOGGING_ENABLED else 'WARNING',
+            'handlers': ['file'] if LOGGING_ENABLED else [],
+            'level': 'WARNING',
             'propagate': True,
         },
-    },
+        '': {
+            'handlers': ['file'] if LOGGING_ENABLED else [],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['file'] if LOGGING_ENABLED else [],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['file'] if LOGGING_ENABLED else [],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'debug_toolbar': {
+            'handlers': ['file'] if LOGGING_ENABLED else [],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
 }

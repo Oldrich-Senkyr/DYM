@@ -44,40 +44,61 @@ def try_create_card_event(data):
 
 @csrf_exempt
 def ingest_data(request):
+    logger.warning("Testovací warning zpráva z logu")
     if request.method == 'POST':
+        logger.debug("Přijat POST request s tělem: %s", request.body)
+
         if 'import_csv' in request.POST:
+            logger.debug("Detekován CSV import.")
+
             csv_file = request.FILES.get('csv_file')
             if csv_file:
+                logger.info("Zpracovávám CSV soubor: %s", csv_file.name)
+
                 try:
                     decoded_file = TextIOWrapper(csv_file.file, encoding='utf-8')
                     reader = csv.DictReader(decoded_file)
 
                     for row in reader:
                         record = {k: v.strip().strip("'") for k, v in row.items()}
+                        logger.debug("Importuji řádek: %s", record)
+
                         IngestedData.objects.create(data=record, received_at=now())
                         try_create_card_event(record)
 
                     messages.success(request, _("Data byla úspěšně importována."))
+                    logger.info("CSV import proběhl úspěšně.")
                 except Exception as e:
                     messages.error(request, _("Chyba při importu CSV: ") + str(e))
+                    logger.exception("Výjimka při importu CSV souboru.")
             return redirect('ingest:read_data')
 
         else:
-            json_data = request.POST.get('data')
+            logger.debug("Detekován JSON POST.")
+
             try:
+                json_data = request.body.decode('utf-8')
                 parsed_data = json.loads(json_data)
+                logger.debug("Přijatý JSON: %s", parsed_data)
+
                 IngestedData.objects.create(data=json.dumps(parsed_data), received_at=now())
                 try_create_card_event(parsed_data)
+
                 messages.success(request, _("Data byla úspěšně uložena."))
-            except json.JSONDecodeError:
+                logger.info("JSON data byla uložena.")
+            except (json.JSONDecodeError, UnicodeDecodeError, AttributeError) as e:
                 messages.error(request, _("Neplatný JSON."))
+                logger.warning("Nepodařilo se dekódovat JSON: %s", e)
             return redirect('ingest:read_data')
+
 
     card_number = request.GET.get('card_number')
     if card_number:
+        logger.debug("Filtrovaný dotaz podle karty: %s", card_number)
         ingested_data = IngestedData.objects.filter(data__icontains=card_number).order_by('-received_at')
     else:
         ingested_data = IngestedData.objects.all().order_by('-received_at')
+        logger.debug("Načítám všechny záznamy IngestedData.")
 
     return render(request, 'ingest/list.html', {'ingested_data': ingested_data})
 #--------------------------------------------------------------------------------
