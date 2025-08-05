@@ -15,6 +15,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.translation import gettext as _
+from django.http import HttpResponse
+from pprint import pformat
 
 logger = logging.getLogger(__name__)
 
@@ -42,19 +44,20 @@ def try_create_card_event(data):
         logger.exception("Chyba při vytváření CardEventu")
 
 
+
 @csrf_exempt
 def ingest_data(request):
     logger.warning("Testovací warning zpráva z logu")
+
     if request.method == 'POST':
         logger.debug("Přijat POST request s tělem: %s", request.body)
 
         if 'import_csv' in request.POST:
             logger.debug("Detekován CSV import.")
-
             csv_file = request.FILES.get('csv_file')
+
             if csv_file:
                 logger.info("Zpracovávám CSV soubor: %s", csv_file.name)
-
                 try:
                     decoded_file = TextIOWrapper(csv_file.file, encoding='utf-8')
                     reader = csv.DictReader(decoded_file)
@@ -86,11 +89,15 @@ def ingest_data(request):
 
                 messages.success(request, _("Data byla úspěšně uložena."))
                 logger.info("JSON data byla uložena.")
+
+                # 🟩 Zde se vrací OK + celý request (hlavičky + tělo)
+                response_text = f"OK\n\nHeaders:\n{pformat(dict(request.META))}\n\nBody:\n{json_data}"
+                return HttpResponse(response_text, status=200, content_type="text/plain")
+
             except (json.JSONDecodeError, UnicodeDecodeError, AttributeError) as e:
                 messages.error(request, _("Neplatný JSON."))
                 logger.warning("Nepodařilo se dekódovat JSON: %s", e)
-            return redirect('ingest:read_data')
-
+                return HttpResponse("Neplatný JSON", status=400, content_type="text/plain")
 
     card_number = request.GET.get('card_number')
     if card_number:
@@ -102,7 +109,6 @@ def ingest_data(request):
 
     return render(request, 'ingest/list.html', {'ingested_data': ingested_data})
 #--------------------------------------------------------------------------------
-
 
 def export_data(request):
     data = list(IngestedData.objects.values('id', 'data', 'received_at'))
